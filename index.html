@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan Viaje 6 Días Familia Galarraga - Andreeva (v7 Imágenes Destino)</title>
+    <title>Plan Viaje 6 Días Familia Galarraga - Andreeva (v9 Imagen Banner)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,19 +13,33 @@
       .destination-card {
         transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         border: 1px solid #e5e7eb; /* gray-200 */
+        display: flex;
+        flex-direction: column;
       }
       .destination-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
         border-color: #3b82f6; /* primary-light */
       }
-      /* Efecto hover en imagen dentro de la card */
-      .destination-card img {
-        transition: opacity 0.3s ease;
+      /* Contenedor para SVG que reemplaza la imagen */
+      .destination-svg-container {
+          background-color: #f0f4f8;
+          overflow: hidden;
+          height: 10rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
       }
-      .destination-card:hover img {
-        opacity: 0.85;
-      }
+       .destination-svg-container svg {
+           width: 80%;
+           height: 80%;
+           max-height: 100%;
+           opacity: 0.7;
+           transition: opacity 0.3s ease;
+       }
+       .destination-card:hover .destination-svg-container svg {
+            opacity: 1;
+       }
 
       /* Estilo para el icono SVG de enlace externo */
       .external-link-icon {
@@ -45,7 +59,6 @@
            text-decoration: underline;
            color: #1d4ed8; /* primary-dark */
        }
-
 
       /* Estilos para los SVGs incrustados generales */
       .inline-svg-icon {
@@ -124,10 +137,10 @@
         </header>
 
         <section class="mb-12 rounded-lg overflow-hidden shadow-lg">
-             <img src="https://placehold.co/1400x350/60a5fa/1d4ed8?text=Aventura+Familiar+en+el+Norte"
+             <img src="https://source.unsplash.com/featured/1400x350/?cantabria,landscape,spain"
                   alt="[Imagen de Paisaje del Norte de España]"
                   class="w-full h-auto object-cover"
-                  onerror="this.onerror=null; this.style.display='none';">
+                  onerror="this.onerror=null; this.src='https://placehold.co/1400x350/a5b4fc/1d4ed8?text=Paisaje+del+Norte'; this.alt='Imagen de paisaje no disponible'">
         </section>
 
         <section class="mb-12 p-8 bg-card rounded-lg shadow-md flex flex-col md:flex-row items-center gap-8">
@@ -138,7 +151,7 @@
                     class="rounded-lg shadow-md w-full h-auto object-cover"
                     onerror="this.onerror=null; this.src='https://placehold.co/300x200/e2e8f0/64748b?text=Foto+Familiar'; this.alt='Imagen no disponible'"
                  >
-            </div>
+                 </div>
             <div class="md:w-2/3 text-center md:text-left">
                 <h2 class="text-3xl font-semibold text-text-dark mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -173,11 +186,18 @@
                 </svg>
 
                 <div class="destination-card rounded-lg overflow-hidden bg-white">
-                    <img src="https://placehold.co/400x250/60a5fa/ffffff?text=Playa+y+Puerto+(Laredo/Castro)"
-                         alt="[Imagen de Playa y Puerto en Laredo o Castro Urdiales]"
-                         class="w-full h-40 object-cover"
-                         onerror="this.onerror=null; this.src='https://placehold.co/400x250/cccccc/ffffff?text=Imagen+Costa'; this.alt='Imagen de Costa no disponible'">
-                    <div class="p-5">
+                    <div class="destination-svg-container">
+                        <svg viewBox="0 0 100 60" class="text-blue-500">
+                            <title>Costa y Puerto</title>
+                            <path d="M 5 50 Q 15 40 25 50 T 45 50 T 65 50 T 85 50 T 105 50" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M 10 48 Q 20 38 30 48 T 50 48 T 70 48 T 90 48" fill="none" stroke="currentColor" stroke-width="2" opacity="0.6"/>
+                            <path d="M 60 40 L 60 20 L 85 15 L 85 35 Z" fill="currentColor" opacity="0.7"/>
+                            <path d="M 65 38 L 65 22 L 80 18 L 80 33 Z" fill="#fff"/>
+                            <path d="M 70 25 h 5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                            <rect x="55" y="35" width="5" height="5" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="p-5 flex-grow">
                         <h3 class="font-semibold text-xl text-text-dark mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><circle cx="12" cy="12" r="8"/><path d="M12 2v7.5"/><path d="m19.4 5-5.2 3.4"/><path d="M22 12h-7.5"/><path d="m19.4 19-5.2-3.4"/><path d="M12 22v-7.5"/><path d="m4.6 19 5.2-3.4"/><path d="M2 12h7.5"/><path d="m4.6 5 5.2 3.4"/><circle cx="12" cy="12" r="2"/></svg>
                             Laredo / Castro U.
@@ -195,10 +215,15 @@
                     </div>
                 </div>
                 <a href="https://www.bizkaia.eus/es/gaztelugatxe" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
-                    <img src="https://placehold.co/400x250/1d4ed8/ffffff?text=Isla+Gaztelugatxe"
-                         alt="[Imagen de San Juan de Gaztelugatxe]"
-                         class="w-full h-40 object-cover"
-                         onerror="this.onerror=null; this.src='https://placehold.co/400x250/cccccc/ffffff?text=Imagen+Gaztelugatxe'; this.alt='Imagen de Gaztelugatxe no disponible'">
+                    <div class="destination-svg-container">
+                         <svg viewBox="0 0 100 60" class="text-blue-700">
+                             <title>Isla y Ermita de Gaztelugatxe</title>
+                             <path d="M 10 55 Q 50 65 90 55 Q 70 30 50 15 Q 30 30 10 55 Z" fill="currentColor" opacity="0.8"/>
+                             <path d="M 50 15 L 50 8 L 55 5 L 60 8 L 60 15" fill="#fff" stroke="currentColor" stroke-width="1"/>
+                             <path d="M 48 15 L 52 15" fill="none" stroke="#fff" stroke-width="1"/>
+                             <path d="M 30 53 Q 40 48 50 40 Q 60 48 70 53" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="2 2"/>
+                         </svg>
+                    </div>
                     <div class="p-5">
                         <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
@@ -209,10 +234,14 @@
                     </div>
                 </a>
                  <a href="https://parquedecabarceno.com/" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
-                    <img src="https://placehold.co/400x250/f97316/ffffff?text=Animales+Cabárceno"
-                         alt="[Imagen de Animales en Cabárceno]"
-                         class="w-full h-40 object-cover"
-                         onerror="this.onerror=null; this.src='https://placehold.co/400x250/cccccc/ffffff?text=Imagen+Cabárceno'; this.alt='Imagen de Cabárceno no disponible'">
+                     <div class="destination-svg-container">
+                         <svg viewBox="0 0 100 60" class="text-orange-600">
+                             <title>Animales de Cabárceno</title>
+                             <path d="M 30 40 C 20 40 15 55 30 55 Q 40 60 50 55 C 65 55 70 40 60 40 L 55 20 L 45 20 Z" fill="currentColor" opacity="0.7"/>
+                             <path d="M 60 40 Q 70 35 75 25 Q 70 15 60 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                             <circle cx="48" cy="28" r="2" fill="#fff"/>
+                         </svg>
+                    </div>
                     <div class="p-5">
                         <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-secondary"><path d="M13 8c0-4.418-3.134-8-7-8s-7 3.582-7 8 3.134 8 7 8 7-3.582 7-8z"/><path d="M12 12c0-4.418-3.134-8-7-8s-7 3.582-7 8 3.134 8 7 8 7-3.582 7-8z"/><path d="M12 20c0-4.418-3.134-8-7-8s-7 3.582-7 8 3.134 8 7 8 7-3.582 7-8z"/><path d="M16 16c0-4.418-3.134-8-7-8s-7 3.582-7 8 3.134 8 7 8 7-3.582 7-8z"/><path d="M13 19a7 7 0 0 1 7-7"/><path d="M13 12a7 7 0 0 1 7-7"/><path d="M13 8a7 7 0 0 1 7-7"/></svg>
@@ -223,10 +252,17 @@
                     </div>
                 </a>
                  <a href="https://www.santillanadelmarturismo.com/" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
-                    <img src="https://placehold.co/400x250/10b981/ffffff?text=Calles+Santillana"
-                         alt="[Imagen de Calles de Santillana del Mar]"
-                         class="w-full h-40 object-cover"
-                         onerror="this.onerror=null; this.src='https://placehold.co/400x250/cccccc/ffffff?text=Imagen+Santillana'; this.alt='Imagen de Santillana no disponible'">
+                     <div class="destination-svg-container">
+                         <svg viewBox="0 0 100 60" class="text-emerald-500">
+                             <title>Calles de Santillana</title>
+                             <rect x="20" y="10" width="60" height="45" fill="currentColor" opacity="0.7" rx="2"/>
+                             <rect x="25" y="15" width="15" height="15" fill="#fff"/>
+                             <rect x="45" y="15" width="10" height="25" fill="#fff"/>
+                             <rect x="60" y="15" width="15" height="15" fill="#fff"/>
+                             <path d="M 20 55 L 80 55" stroke="#a1a1aa" stroke-width="3" stroke-linecap="round"/>
+                             <path d="M 30 55 L 30 50 M 40 55 L 40 50 M 50 55 L 50 50 M 60 55 L 60 50 M 70 55 L 70 50" stroke="#a1a1aa" stroke-width="1"/>
+                         </svg>
+                    </div>
                     <div class="p-5">
                         <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-accent"><path d="M22 13v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8"/><path d="M19 16v-3a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v3"/><path d="M19 22v-6"/><path d="M14 22v-6"/><path d="M10 16H6v6h4v-6z"/><path d="M10 5.5V4a2 2 0 1 0-4 0v1.5"/><path d="m19 13 3-3 3 3"/><path d="m14 11 3-3 3 3"/></svg>
@@ -237,10 +273,15 @@
                     </div>
                 </a>
                 <a href="https://www.sanvicentedelabarquera.es/turismo/" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
-                    <img src="https://placehold.co/400x250/8b5cf6/ffffff?text=Puente+San+Vicente"
-                         alt="[Imagen de Puente de San Vicente de la Barquera]"
-                         class="w-full h-40 object-cover"
-                         onerror="this.onerror=null; this.src='https://placehold.co/400x250/cccccc/ffffff?text=Imagen+San+Vicente'; this.alt='Imagen de San Vicente no disponible'">
+                     <div class="destination-svg-container">
+                         <svg viewBox="0 0 100 60" class="text-violet-500">
+                             <title>Puente de San Vicente</title>
+                             <path d="M 10 50 Q 50 30 90 50" fill="none" stroke="currentColor" stroke-width="3"/>
+                             <path d="M 15 50 L 15 40 M 30 47 L 30 37 M 45 45 L 45 35 M 55 45 L 55 35 M 70 47 L 70 37 M 85 50 L 85 40" fill="none" stroke="currentColor" stroke-width="2"/>
+                             <path d="M 5 50 L 95 50" fill="none" stroke="currentColor" stroke-width="3"/>
+                             <path d="M 0 58 L 100 58" fill="none" stroke="#60a5fa" stroke-width="4" opacity="0.5"/>
+                         </svg>
+                    </div>
                     <div class="p-5">
                         <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-violet-500"><circle cx="12" cy="12" r="8"/><path d="M12 2v7.5"/><path d="m19.4 5-5.2 3.4"/><path d="M22 12h-7.5"/><path d="m19.4 19-5.2-3.4"/><path d="M12 22v-7.5"/><path d="m4.6 19 5.2-3.4"/><path d="M2 12h7.5"/><path d="m4.6 5 5.2 3.4"/><circle cx="12" cy="12" r="2"/></svg>
@@ -251,10 +292,13 @@
                     </div>
                 </a>
                 <a href="https://cantur.com/instalaciones/5-teleferico-de-fuente-de" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
-                    <img src="https://placehold.co/400x250/6b7280/ffffff?text=Montañas+Picos+Europa"
-                         alt="[Imagen de Montañas de Picos de Europa]"
-                         class="w-full h-40 object-cover"
-                         onerror="this.onerror=null; this.src='https://placehold.co/400x250/cccccc/ffffff?text=Imagen+Picos'; this.alt='Imagen de Picos de Europa no disponible'">
+                     <div class="destination-svg-container">
+                         <svg viewBox="0 0 100 60" class="text-gray-500">
+                              <title>Montañas Picos de Europa</title>
+                              <path d="M 10 55 L 30 15 L 45 40 L 60 10 L 75 45 L 90 20 L 110 55 Z" fill="currentColor" opacity="0.7"/>
+                              <path d="M 0 55 L 20 25 L 35 50 L 50 20 L 65 55 L 80 30 L 95 55 Z" fill="currentColor" opacity="0.5"/>
+                         </svg>
+                    </div>
                     <div class="p-5">
                         <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-gray-500"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/><path d="M4.14 15.08c2.62-1.57 5.24-1.43 7.86.42 2.74 1.94 5.49 2 8.23.16"/></svg>
@@ -412,7 +456,7 @@
 
         <footer class="text-center mt-12 pt-8 border-t border-gray-200">
             <p class="text-lg font-semibold text-primary">¡Buen viaje, Familia Galarraga - Andreeva!</p>
-            <p class="text-xs text-text-light mt-2">Planificador v6</p> </footer>
+            <p class="text-xs text-text-light mt-2">Planificador v8</p> </footer>
 
     </div>
 
