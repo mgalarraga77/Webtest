@@ -1,126 +1,71 @@
 <!DOCTYPE html>
-<html lang="bg"> <head>
+<html lang="bg">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>План за 6-дневно семейно пътуване Галагара - Андреева (v17 Относителна снимка)</title>
+    <title>Планировчик за пътуване Галагара - Андреева</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-      /* Стилове за интерактивни карти на дестинации */
       .destination-card {
         transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        border: 1px solid #e5e7eb; /* gray-200 */
-        display: flex;
-        flex-direction: column;
+        border: 1px solid #e5e7eb; display: flex; flex-direction: column;
       }
       .destination-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
-        border-color: #3b82f6; /* primary-light */
+        border-color: #3b82f6;
       }
-      /* Контейнер за SVG в картите на дестинации */
       .destination-svg-container {
-          background-color: #f0f4f8;
-          overflow: hidden;
-          height: 10rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          background-color: #f0f4f8; overflow: hidden; height: 10rem;
+          display: flex; align-items: center; justify-content: center;
       }
        .destination-svg-container svg {
-           width: 80%;
-           height: 80%;
-           max-height: 100%;
-           opacity: 0.7;
+           width: 80%; height: 80%; max-height: 100%; opacity: 0.7;
            transition: opacity 0.3s ease;
        }
-       .destination-card:hover .destination-svg-container svg {
-            opacity: 1;
-       }
-
-      /* Стил за SVG икона за външна връзка */
+       .destination-card:hover .destination-svg-container svg { opacity: 1; }
       .external-link-icon {
-        width: 0.75em;
-        height: 0.75em;
-        display: inline-block;
-        vertical-align: baseline;
-        margin-left: 0.25em;
-        stroke-width: 3;
-        color: #9ca3af; /* gray-400 */
-        transition: color 0.3s ease;
+        width: 0.75em; height: 0.75em; display: inline-block; vertical-align: baseline;
+        margin-left: 0.25em; stroke-width: 3; color: #9ca3af; transition: color 0.3s ease;
       }
-      .card-link:hover .external-link-icon {
-         color: #1e40af; /* primary */
-      }
-       .card-link:hover {
-           text-decoration: underline;
-           color: #1d4ed8; /* primary-dark */
-       }
-
-
-      /* Стилове за общи вградени SVG икони */
+      .card-link:hover .external-link-icon { color: #1e40af; }
+      .card-link:hover { text-decoration: underline; color: #1d4ed8; }
       .inline-svg-icon {
-          display: inline-block;
-          vertical-align: -0.15em;
-          width: 1.1em;
-          height: 1.1em;
-          margin-right: 0.3em;
+          display: inline-block; vertical-align: -0.15em; width: 1.1em; height: 1.1em; margin-right: 0.3em;
       }
-      /* Специфични стилове за SVG картата */
-      .map-svg-path {
-        stroke-dasharray: 10, 5;
-        animation: draw-map-path 10s linear infinite;
+      .map-svg-path { stroke-dasharray: 10, 5; animation: draw-map-path 10s linear infinite; }
+      @keyframes draw-map-path { to { stroke-dashoffset: -1000; } }
+      /* Language button styles */
+      .lang-button {
+          padding: 0.25rem 0.75rem; margin-left: 0.5rem; border-radius: 0.375rem;
+          border: 1px solid transparent; transition: background-color 0.3s, border-color 0.3s;
+          font-size: 0.875rem; cursor: pointer;
       }
-      @keyframes draw-map-path {
-        to {
-          stroke-dashoffset: -1000;
-        }
-      }
+      .lang-button.active { background-color: #dbeafe; border-color: #93c5fd; color: #1e40af; cursor: default;}
+      .lang-button:not(.active):hover { background-color: #e5e7eb; }
 
     </style>
     <script>
-      // Tailwind конфигурация
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-            },
-            colors: {
-              primary: {
-                DEFAULT: '#2563eb', // Blue 600 (основен)
-                light: '#60a5fa', // Blue 400 (по-светъл)
-                dark: '#1d4ed8'  // Blue 700 (по-тъмен)
-              },
-              secondary: '#f97316', // Orange 600 (за сигнали/предстоящи)
-              accent: '#10b981',   // Emerald 500 (рядко използван)
-              background: '#f8fafc', // Slate 50 (общ фон)
-              card: '#ffffff',     // White (фон карти)
-              text: {
-                  DEFAULT: '#374151', // Gray 700 (основен текст)
-                  light: '#6b7280', // Gray 500 (вторичен текст)
-                  dark: '#1f2937'   // Gray 800 (заглавия)
-              }
-            },
-            boxShadow: {
-              'md': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-              'lg': '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-            }
-          }
-        }
-      }
+      // Tailwind config (no changes)
+      tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], }, colors: { primary: { DEFAULT: '#2563eb', light: '#60a5fa', dark: '#1d4ed8' }, secondary: '#f97316', accent: '#10b981', background: '#f8fafc', card: '#ffffff', text: { DEFAULT: '#374151', light: '#6b7280', dark: '#1f2937' } }, boxShadow: { 'md': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)', 'lg': '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)', } } } }
     </script>
 </head>
 <body class="bg-background font-sans text-text antialiased">
 
+    <div class="absolute top-4 right-4 z-10">
+        <button id="lang-bg" class="lang-button active" onclick="setLanguage('bg')">Български</button>
+        <button id="lang-en" class="lang-button" onclick="setLanguage('en')">English</button>
+    </div>
+
     <div class="container mx-auto p-4 md:p-8 max-w-6xl">
 
-        <header class="text-center mb-8 pb-4 border-b border-gray-200">
+        <header class="text-center mb-8 pt-8 md:pt-0 pb-4 border-b border-gray-200"> {/* Added padding-top for lang switcher space */}
             <div class="mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" class="w-24 h-12 mx-auto text-primary">
-                    <title>Икона за семейно пътуване</title>
+                    <title data-key="header.icon.title">Икона за семейно пътуване</title>
                     <path d="M10 48 L 25 18 L 35 35 L 45 25 L 55 48 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M40 48 L 55 18 L 65 35 L 75 25 L 85 48 Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
                     <path d="M75 42 h 4 c 1 0 1.5 -0.5 1.5 -1 v -3 c 0 -1 -0.5 -1.5 -1 -1.5 h -1 l -2 -3 h -4 l -2 3 h -1 c -0.5 0 -1 0.5 -1 1.5 v 3 c 0 0.5 0.5 1 1.5 1 h 4 Z" fill="currentColor" stroke="#fff" stroke-width="0.5"/>
@@ -129,38 +74,34 @@
                     <path d="M5 45 Q 30 50, 50 45 T 95 45" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/>
                 </svg>
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold text-text-dark mb-2">Семейно пътуване: Кантабрия и Баското крайбрежие</h1>
+            <h1 data-key="header.title" class="text-4xl md:text-5xl font-bold text-text-dark mb-2">Семейно пътуване: Кантабрия и Баското крайбрежие</h1>
             <p class="text-xl text-primary">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
-                20 - 25 април 2025 г. (6 дни)
+                <span data-key="header.dates">20 - 25 април 2025 г. (6 дни)</span>
             </p>
         </header>
 
         <section class="mb-12 rounded-lg overflow-hidden shadow-lg">
              <img src="https://www.forohomologar.com/wp-content/uploads/2023/02/1a82377f064eeeea9a2c3a7ff5a489dd-cantabria-1024x683.jpg"
-                  alt="[Изображение на пейзаж от Кантабрия]" class="w-full h-auto object-cover"
-                  onerror="this.onerror=null; this.src='https://placehold.co/1400x350/a5b4fc/1d4ed8?text=Пейзаж+от+Севера+(Грешка)'; this.alt='Изображението на пейзаж не е налично'"> </section>
+                  data-alt-key="banner.alt" alt="[Изображение на пейзаж от Кантабрия]" class="w-full h-auto object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/1400x350/a5b4fc/1d4ed8?text=Paisaje+del+Norte+(Error)'; this.alt='Изображението на пейзаж не е налично'"> </section>
 
         <section class="mb-12 p-8 bg-card rounded-lg shadow-md flex flex-col md:flex-row items-center gap-8">
              <div class="w-64 flex-shrink-0 mb-4 md:mb-0 md:mr-8">
                  <img
-                    src="foto_familia.jpg" alt="Снимка на семейство Галагара-Андреева" class="rounded-lg shadow-md w-full h-auto object-cover"
+                    src="foto_familia.jpg" data-alt-key="family.photo.alt" alt="Снимка на семейство Галагара-Андреева" class="rounded-lg shadow-md w-full h-auto object-cover"
                     onerror="this.onerror=null; this.src='https://placehold.co/256x192/e2e8f0/64748b?text=Семейна+снимка+(Не+е+намерена)'; this.alt='Грешка при зареждане на семейната снимка'"> </div>
             <div class="md:w-auto flex-grow text-center md:text-left">
                 <h2 class="text-3xl font-semibold text-text-dark mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    Екипажът
+                    <span data-key="family.title">Екипажът</span>
                 </h2>
                 <ul class="text-lg space-y-2 text-text">
-                    <li>Miguel</li>
-                    <li>Mariya</li>
-                    <li>Cristina</li>
-                    <li>Ana</li>
-                    <li>Martín</li>
+                    <li>Miguel</li> <li>Mariya</li> <li>Cristina</li> <li>Ana</li> <li>Martín</li>
                 </ul>
                 <p class="text-sm text-text-light mt-4">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary w-4 h-4 mr-1"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
-                    Пътуване от Памплона
+                    <span data-key="family.origin">Пътуване от Памплона</span>
                 </p>
             </div>
         </section>
@@ -168,7 +109,7 @@
         <section class="mb-12 p-8 bg-card rounded-lg shadow-md">
             <h2 class="text-4xl font-semibold text-text-dark mb-8 text-center">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                Основни дестинации
+                <span data-key="destinations.title">Основни дестинации</span>
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -182,28 +123,21 @@
                 <div class="destination-card rounded-lg overflow-hidden bg-white">
                     <div class="destination-svg-container">
                         <svg viewBox="0 0 100 60" class="text-blue-500">
-                            <title>Бряг и пристанище</title>
-                            <path d="M 5 50 Q 15 40 25 50 T 45 50 T 65 50 T 85 50 T 105 50" fill="none" stroke="currentColor" stroke-width="2"/>
-                            <path d="M 10 48 Q 20 38 30 48 T 50 48 T 70 48 T 90 48" fill="none" stroke="currentColor" stroke-width="2" opacity="0.6"/>
-                            <path d="M 60 40 L 60 20 L 85 15 L 85 35 Z" fill="currentColor" opacity="0.7"/>
-                            <path d="M 65 38 L 65 22 L 80 18 L 80 33 Z" fill="#fff"/>
-                            <path d="M 70 25 h 5" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                            <rect x="55" y="35" width="5" height="5" fill="currentColor"/>
+                            <title data-key="dest.laredo_castro.svg.title">Бряг и пристанище</title>
+                            <path d="M 5 50 Q 15 40 25 50 T 45 50 T 65 50 T 85 50 T 105 50" fill="none" stroke="currentColor" stroke-width="2"/> <path d="M 10 48 Q 20 38 30 48 T 50 48 T 70 48 T 90 48" fill="none" stroke="currentColor" stroke-width="2" opacity="0.6"/> <path d="M 60 40 L 60 20 L 85 15 L 85 35 Z" fill="currentColor" opacity="0.7"/> <path d="M 65 38 L 65 22 L 80 18 L 80 33 Z" fill="#fff"/> <path d="M 70 25 h 5" fill="none" stroke="currentColor" stroke-width="1.5"/> <rect x="55" y="35" width="5" height="5" fill="currentColor"/>
                         </svg>
                     </div>
                     <div class="p-5 flex-grow">
                         <h3 class="font-semibold text-xl text-text-dark mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><circle cx="12" cy="12" r="8"/><path d="M12 2v7.5"/><path d="m19.4 5-5.2 3.4"/><path d="M22 12h-7.5"/><path d="m19.4 19-5.2-3.4"/><path d="M12 22v-7.5"/><path d="m4.6 19 5.2-3.4"/><path d="M2 12h7.5"/><path d="m4.6 5 5.2 3.4"/><circle cx="12" cy="12" r="2"/></svg>
-                            Ларедо / Кастро У.
+                            <span data-key="dest.laredo_castro.name">Ларедо / Кастро У.</span>
                         </h3>
                         <div class="space-y-2">
                              <a href="https://turismolaredo.es/" target="_blank" rel="noopener noreferrer" class="card-link text-sm text-primary block">
-                                Туризъм Ларедо
-                                <svg class="external-link-icon inline-block ml-1"><use xlink:href="#external-link-icon"></use></svg>
+                                <span data-key="dest.laredo.link">Туризъм Ларедо</span> <svg class="external-link-icon inline-block ml-1"><use xlink:href="#external-link-icon"></use></svg>
                             </a>
                             <a href="https://visitcastrourdiales.es/" target="_blank" rel="noopener noreferrer" class="card-link text-sm text-primary block">
-                                Туризъм Кастро Урдиалес
-                                <svg class="external-link-icon inline-block ml-1"><use xlink:href="#external-link-icon"></use></svg>
+                                <span data-key="dest.castro.link">Туризъм Кастро Урдиалес</span> <svg class="external-link-icon inline-block ml-1"><use xlink:href="#external-link-icon"></use></svg>
                             </a>
                         </div>
                     </div>
@@ -211,18 +145,14 @@
                 <a href="https://www.bizkaia.eus/es/gaztelugatxe" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
                     <div class="destination-svg-container">
                          <svg viewBox="0 0 100 60" class="text-blue-700">
-                             <title>Остров и параклис Гастелугаче</title>
-                             <path d="M 10 55 Q 50 65 90 55 Q 70 30 50 15 Q 30 30 10 55 Z" fill="currentColor" opacity="0.8"/>
-                             <path d="M 50 15 L 50 8 L 55 5 L 60 8 L 60 15" fill="#fff" stroke="currentColor" stroke-width="1"/>
-                             <path d="M 48 15 L 52 15" fill="none" stroke="#fff" stroke-width="1"/>
-                             <path d="M 30 53 Q 40 48 50 40 Q 60 48 70 53" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="2 2"/>
+                             <title data-key="dest.gaztelugatxe.svg.title">Остров и параклис Гастелугаче</title>
+                             <path d="M 10 55 Q 50 65 90 55 Q 70 30 50 15 Q 30 30 10 55 Z" fill="currentColor" opacity="0.8"/> <path d="M 50 15 L 50 8 L 55 5 L 60 8 L 60 15" fill="#fff" stroke="currentColor" stroke-width="1"/> <path d="M 48 15 L 52 15" fill="none" stroke="#fff" stroke-width="1"/> <path d="M 30 53 Q 40 48 50 40 Q 60 48 70 53" fill="none" stroke="#fff" stroke-width="1" stroke-dasharray="2 2"/>
                          </svg>
                     </div>
                     <div class="p-5">
                         <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
-                            Сан Хуан де Гастелугаче
-                           <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg>
+                            <span data-key="dest.gaztelugatxe.name">Сан Хуан де Гастелугаче</span> <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg>
                         </h3>
                          <span class="text-xs text-text-light block mt-1">bizkaia.eus/es/gaztelugatxe</span>
                     </div>
@@ -230,17 +160,14 @@
                  <a href="https://parquedecabarceno.com/" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
                      <div class="destination-svg-container">
                          <svg viewBox="0 0 100 60" class="text-orange-600">
-                             <title>Животни в Кабарсено</title>
-                             <path d="M 30 40 C 20 40 15 55 30 55 Q 40 60 50 55 C 65 55 70 40 60 40 L 55 20 L 45 20 Z" fill="currentColor" opacity="0.7"/>
-                             <path d="M 60 40 Q 70 35 75 25 Q 70 15 60 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                             <circle cx="48" cy="28" r="2" fill="#fff"/>
+                             <title data-key="dest.cabarceno.svg.title">Животни в Кабарсено</title>
+                             <path d="M 30 40 C 20 40 15 55 30 55 Q 40 60 50 55 C 65 55 70 40 60 40 L 55 20 L 45 20 Z" fill="currentColor" opacity="0.7"/> <path d="M 60 40 Q 70 35 75 25 Q 70 15 60 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/> <circle cx="48" cy="28" r="2" fill="#fff"/>
                          </svg>
                     </div>
                     <div class="p-5">
                         <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-secondary"><path d="M13 8c0-4.418-3.134-8-7-8s-7 3.582-7 8 3.134 8 7 8 7-3.582 7-8z"/><path d="M12 12c0-4.418-3.134-8-7-8s-7 3.582-7 8 3.134 8 7 8 7-3.582 7-8z"/><path d="M12 20c0-4.418-3.134-8-7-8s-7 3.582-7 8 3.134 8 7 8 7-3.582 7-8z"/><path d="M16 16c0-4.418-3.134-8-7-8s-7 3.582-7 8 3.134 8 7 8 7-3.582 7-8z"/><path d="M13 19a7 7 0 0 1 7-7"/><path d="M13 12a7 7 0 0 1 7-7"/><path d="M13 8a7 7 0 0 1 7-7"/></svg>
-                            Парк Кабарсено
-                           <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg>
+                            <span data-key="dest.cabarceno.name">Парк Кабарсено</span> <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg>
                         </h3>
                          <span class="text-xs text-text-light block mt-1">parquedecabarceno.com</span>
                     </div>
@@ -248,20 +175,14 @@
                  <a href="https://www.santillanadelmarturismo.com/" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
                      <div class="destination-svg-container">
                          <svg viewBox="0 0 100 60" class="text-emerald-500">
-                             <title>Улици на Сантиляна</title>
-                             <rect x="20" y="10" width="60" height="45" fill="currentColor" opacity="0.7" rx="2"/>
-                             <rect x="25" y="15" width="15" height="15" fill="#fff"/>
-                             <rect x="45" y="15" width="10" height="25" fill="#fff"/>
-                             <rect x="60" y="15" width="15" height="15" fill="#fff"/>
-                             <path d="M 20 55 L 80 55" stroke="#a1a1aa" stroke-width="3" stroke-linecap="round"/>
-                             <path d="M 30 55 L 30 50 M 40 55 L 40 50 M 50 55 L 50 50 M 60 55 L 60 50 M 70 55 L 70 50" stroke="#a1a1aa" stroke-width="1"/>
+                             <title data-key="dest.santillana.svg.title">Улици на Сантиляна</title>
+                             <rect x="20" y="10" width="60" height="45" fill="currentColor" opacity="0.7" rx="2"/> <rect x="25" y="15" width="15" height="15" fill="#fff"/> <rect x="45" y="15" width="10" height="25" fill="#fff"/> <rect x="60" y="15" width="15" height="15" fill="#fff"/> <path d="M 20 55 L 80 55" stroke="#a1a1aa" stroke-width="3" stroke-linecap="round"/> <path d="M 30 55 L 30 50 M 40 55 L 40 50 M 50 55 L 50 50 M 60 55 L 60 50 M 70 55 L 70 50" stroke="#a1a1aa" stroke-width="1"/>
                          </svg>
                     </div>
                     <div class="p-5">
                         <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-accent"><path d="M22 13v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8"/><path d="M19 16v-3a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v3"/><path d="M19 22v-6"/><path d="M14 22v-6"/><path d="M10 16H6v6h4v-6z"/><path d="M10 5.5V4a2 2 0 1 0-4 0v1.5"/><path d="m19 13 3-3 3 3"/><path d="m14 11 3-3 3 3"/></svg>
-                            Сантиляна дел Мар
-                           <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg>
+                            <span data-key="dest.santillana.name">Сантиляна дел Мар</span> <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg>
                         </h3>
                          <span class="text-xs text-text-light block mt-1">santillanadelmarturismo.com</span>
                     </div>
@@ -269,18 +190,14 @@
                 <a href="https://www.sanvicentedelabarquera.es/turismo/" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
                      <div class="destination-svg-container">
                          <svg viewBox="0 0 100 60" class="text-violet-500">
-                             <title>Мост Сан Висенте</title>
-                             <path d="M 10 50 Q 50 30 90 50" fill="none" stroke="currentColor" stroke-width="3"/>
-                             <path d="M 15 50 L 15 40 M 30 47 L 30 37 M 45 45 L 45 35 M 55 45 L 55 35 M 70 47 L 70 37 M 85 50 L 85 40" fill="none" stroke="currentColor" stroke-width="2"/>
-                             <path d="M 5 50 L 95 50" fill="none" stroke="currentColor" stroke-width="3"/>
-                             <path d="M 0 58 L 100 58" fill="none" stroke="#60a5fa" stroke-width="4" opacity="0.5"/>
+                             <title data-key="dest.san_vicente.svg.title">Мост Сан Висенте</title>
+                             <path d="M 10 50 Q 50 30 90 50" fill="none" stroke="currentColor" stroke-width="3"/> <path d="M 15 50 L 15 40 M 30 47 L 30 37 M 45 45 L 45 35 M 55 45 L 55 35 M 70 47 L 70 37 M 85 50 L 85 40" fill="none" stroke="currentColor" stroke-width="2"/> <path d="M 5 50 L 95 50" fill="none" stroke="currentColor" stroke-width="3"/> <path d="M 0 58 L 100 58" fill="none" stroke="#60a5fa" stroke-width="4" opacity="0.5"/>
                          </svg>
                     </div>
                     <div class="p-5">
                         <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-violet-500"><circle cx="12" cy="12" r="8"/><path d="M12 2v7.5"/><path d="m19.4 5-5.2 3.4"/><path d="M22 12h-7.5"/><path d="m19.4 19-5.2-3.4"/><path d="M12 22v-7.5"/><path d="m4.6 19 5.2-3.4"/><path d="M2 12h7.5"/><path d="m4.6 5 5.2 3.4"/><circle cx="12" cy="12" r="2"/></svg>
-                            Сан Висенте де ла Б.
-                           <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg>
+                            <span data-key="dest.san_vicente.name">Сан Висенте де ла Б.</span> <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg>
                         </h3>
                          <span class="text-xs text-text-light block mt-1">sanvicentedelabarquera.es</span>
                     </div>
@@ -288,16 +205,14 @@
                 <a href="https://cantur.com/instalaciones/5-teleferico-de-fuente-de" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
                      <div class="destination-svg-container">
                          <svg viewBox="0 0 100 60" class="text-gray-500">
-                              <title>Планини Пикос де Еуропа</title>
-                              <path d="M 10 55 L 30 15 L 45 40 L 60 10 L 75 45 L 90 20 L 110 55 Z" fill="currentColor" opacity="0.7"/>
-                              <path d="M 0 55 L 20 25 L 35 50 L 50 20 L 65 55 L 80 30 L 95 55 Z" fill="currentColor" opacity="0.5"/>
+                              <title data-key="dest.picos.svg.title">Планини Пикос де Еуропа</title>
+                              <path d="M 10 55 L 30 15 L 45 40 L 60 10 L 75 45 L 90 20 L 110 55 Z" fill="currentColor" opacity="0.7"/> <path d="M 0 55 L 20 25 L 35 50 L 50 20 L 65 55 L 80 30 L 95 55 Z" fill="currentColor" opacity="0.5"/>
                          </svg>
                     </div>
                     <div class="p-5">
                         <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-gray-500"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/><path d="M4.14 15.08c2.62-1.57 5.24-1.43 7.86.42 2.74 1.94 5.49 2 8.23.16"/></svg>
-                            Пикос де Еуропа
-                           <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg>
+                            <span data-key="dest.picos.name">Пикос де Еуропа</span> <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg>
                         </h3>
                          <span class="text-xs text-text-light block mt-1">cantur.com (Fuente Dé)</span>
                     </div>
@@ -308,46 +223,19 @@
          <section class="mb-12">
              <h2 class="text-4xl font-semibold text-text-dark mb-6 text-center">
                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
-                 Общ маршрут
+                 <span data-key="map.title">Общ маршрут</span>
              </h2>
              <a href="https://www.google.com/maps/dir/Pamplona/Laredo,+Cantabria/San+Juan+de+Gaztelugatxe,+Bermeo/Castro-Urdiales,+Cantabria/Parque+de+la+Naturaleza+de+Cab%C3%A1rceno,+Cab%C3%A1rceno/Santillana+del+Mar,+Cantabria/San+Vicente+de+la+Barquera,+Cantabria/Potes,+Cantabria/Pamplona/" target="_blank" rel="noopener noreferrer" class="block rounded-lg overflow-hidden shadow-lg border border-gray-200 hover:border-primary transition-colors duration-300 bg-slate-50 p-4">
                  <svg viewBox="0 0 800 300" width="100%" height="auto" class="mx-auto">
-                    <title>Стилизирана карта на маршрута - Кликнете, за да видите в Google Maps</title>
-                    <rect width="100%" height="100%" fill="#f8fafc"/>
-                    <defs>
-                        <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-                            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#e5e7eb" stroke-width="0.5"/>
-                        </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#grid)" opacity="0.5"/>
-
-                    <path d="M 50 150 Q 150 50, 250 150 T 450 150 C 500 150, 550 250, 650 150 T 750 100"
-                          fill="none"
-                          stroke="#2563eb"
-                          stroke-width="4"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          class="map-svg-path" />
-
-                    <circle cx="50" cy="150" r="8" fill="#1d4ed8" stroke="#ffffff" stroke-width="2">
-                        <title>Памплона (Начало)</title>
-                    </circle>
-                    <circle cx="250" cy="150" r="6" fill="#60a5fa">
-                         <title>Баско/Източно крайбрежие</title>
-                    </circle>
-                    <circle cx="450" cy="150" r="6" fill="#60a5fa">
-                         <title>Централна зона (Кантабрия)</title>
-                    </circle>
-                     <circle cx="650" cy="150" r="6" fill="#60a5fa">
-                         <title>Потес/Пикос</title>
-                    </circle>
-                    <circle cx="750" cy="100" r="8" fill="#1d4ed8" stroke="#ffffff" stroke-width="2">
-                         <title>Пикос де Еуропа (Зона)</title>
-                    </circle>
-
-                     <text x="50%" y="280" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" fill="#6b7280">
-                         (Кликнете, за да видите подробен маршрут в Google Maps)
-                     </text>
+                    <title data-key="map.svg.title">Стилизирана карта на маршрута - Кликнете, за да видите в Google Maps</title>
+                    <rect width="100%" height="100%" fill="#f8fafc"/> <defs> <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"> <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#e5e7eb" stroke-width="0.5"/> </pattern> </defs> <rect width="100%" height="100%" fill="url(#grid)" opacity="0.5"/>
+                    <path d="M 50 150 Q 150 50, 250 150 T 450 150 C 500 150, 550 250, 650 150 T 750 100" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="map-svg-path" />
+                    <circle cx="50" cy="150" r="8" fill="#1d4ed8" stroke="#ffffff" stroke-width="2"> <title data-key="map.start">Памплона (Начало)</title> </circle>
+                    <circle cx="250" cy="150" r="6" fill="#60a5fa"> <title data-key="map.point1">Баско/Източно крайбрежие</title> </circle>
+                    <circle cx="450" cy="150" r="6" fill="#60a5fa"> <title data-key="map.point2">Централна зона (Кантабрия)</title> </circle>
+                    <circle cx="650" cy="150" r="6" fill="#60a5fa"> <title data-key="map.point3">Потес/Пикос</title> </circle>
+                    <circle cx="750" cy="100" r="8" fill="#1d4ed8" stroke="#ffffff" stroke-width="2"> <title data-key="map.end">Пикос де Еуропа (Зона)</title> </circle>
+                    <text x="50%" y="280" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" fill="#6b7280" data-key="map.link_text"> (Кликнете, за да видите подробен маршрут в Google Maps) </text>
                  </svg>
              </a>
         </section>
@@ -355,92 +243,305 @@
         <section class="mb-12 p-8 bg-card rounded-lg shadow-md">
             <h2 class="text-4xl font-semibold text-text-dark mb-8 text-center">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
-                Предложение за маршрут (Коригиран)
+                <span data-key="itinerary.title">Предложение за маршрут (Коригиран)</span>
             </h2>
             <div class="space-y-6 text-text">
                  <div class="p-5 border-l-4 border-primary rounded-r-md bg-slate-50">
-                    <p class="font-semibold text-xl text-text-dark">Ден 1 (Нед 20 Апр): <span class="font-normal text-text">Памплона <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-5 h-5 text-gray-500"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg> Гастелугаче <span class="text-xs italic">(Посещение)</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-5 h-5 text-gray-500"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg> Зона Сантиляна</span></p>
-                    <p class="text-base mt-2 text-text-light">Отпътуване (12:00ч), посещение <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 text-gray-500"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg> Гастелугаче (резервирайте!). Пътуване към зона Сантиляна. Нощувка в База 1.</p> </div>
+                    <p class="font-semibold text-xl text-text-dark" data-key="itinerary.day1.title">Ден 1 (Нед 20 Апр): <span class="font-normal text-text">Памплона -> Гастелугаче (Посещение) -> Зона Сантиляна</span></p>
+                    <p class="text-base mt-2 text-text-light" data-key="itinerary.day1.desc">Отпътуване (12:00ч), посещение Гастелугаче (резервирайте!). Пътуване към зона Сантиляна. Нощувка в База 1.</p>
+                </div>
                  <div class="p-5 border-l-4 border-secondary rounded-r-md bg-orange-50">
-                    <p class="font-semibold text-xl text-text-dark">Ден 2 (Пон 21 Апр): <span class="font-normal text-text">Парк Кабарсено (Цял ден)</span></p>
-                    <p class="text-base mt-2 text-text-light">Цял ден, посветен на разглеждане на <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 text-gray-500"><path d="M10 10.5A1.5 1.5 0 0 1 8.5 12 1.5 1.5 0 0 1 7 10.5V4a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v6.5Z"/><path d="M14 10.5A1.5 1.5 0 0 1 12.5 12 1.5 1.5 0 0 1 11 10.5V4a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v6.5Z"/><path d="M11 14h6a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h2"/></svg> Кабарсено. Нощувка в База 1.</p> </div>
+                    <p class="font-semibold text-xl text-text-dark" data-key="itinerary.day2.title">Ден 2 (Пон 21 Апр): <span class="font-normal text-text">Парк Кабарсено (Цял ден)</span></p>
+                    <p class="text-base mt-2 text-text-light" data-key="itinerary.day2.desc">Цял ден, посветен на разглеждане на Кабарсено. Нощувка в База 1.</p>
+                </div>
                 <div class="p-5 border-l-4 border-primary rounded-r-md bg-slate-50">
-                     <p class="font-semibold text-xl text-text-dark">Ден 3 (Вто 22 Апр): <span class="font-normal text-text">Сантиляна & Сан Висенте</span></p>
-                     <p class="text-base mt-2 text-text-light">Посещение на <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 text-gray-500"><path d="M22 13v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8"/><path d="M19 16v-3a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v3"/><path d="M19 22v-6"/><path d="M14 22v-6"/><path d="M10 16H6v6h4v-6z"/><path d="M10 5.5V4a2 2 0 1 0-4 0v1.5"/><path d="m19 13 3-3 3 3"/><path d="m14 11 3-3 3 3"/></svg> Сантиляна дел Мар сутринта и <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 text-gray-500"><circle cx="12" cy="12" r="8"/><path d="M12 2v7.5"/><path d="m19.4 5-5.2 3.4"/><path d="M22 12h-7.5"/><path d="m19.4 19-5.2-3.4"/><path d="M12 22v-7.5"/><path d="m4.6 19 5.2-3.4"/><path d="M2 12h7.5"/><path d="m4.6 5 5.2 3.4"/><circle cx="12" cy="12" r="2"/></svg> Сан Висенте де ла Баркера следобед. Нощувка в База 1.</p> </div>
+                     <p class="font-semibold text-xl text-text-dark" data-key="itinerary.day3.title">Ден 3 (Вто 22 Апр): <span class="font-normal text-text">Сантиляна & Сан Висенте</span></p>
+                     <p class="text-base mt-2 text-text-light" data-key="itinerary.day3.desc">Посещение на Сантиляна дел Мар сутринта и Сан Висенте де ла Баркера следобед. Нощувка в База 1.</p>
+                </div>
                  <div class="p-5 border-l-4 border-primary-light rounded-r-md bg-slate-50">
-                     <p class="font-semibold text-xl text-text-dark">Ден 4 (Сря 23 Апр): <span class="font-normal text-text">Пътуване до Пикос <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-5 h-5 text-gray-500"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg> Потес</span></p>
-                     <p class="text-base mt-2 text-text-light">Пътуване до Пикос де Еуропа, настаняване в База 2, следобед разглеждане на Потес.</p> </div>
+                     <p class="font-semibold text-xl text-text-dark" data-key="itinerary.day4.title">Ден 4 (Сря 23 Апр): <span class="font-normal text-text">Пътуване до Пикос -> Потес</span></p>
+                     <p class="text-base mt-2 text-text-light" data-key="itinerary.day4.desc">Пътуване до Пикос де Еуропа, настаняване в База 2, следобед разглеждане на Потес.</p>
+                </div>
                  <div class="p-5 border-l-4 border-primary rounded-r-md bg-slate-50">
-                     <p class="font-semibold text-xl text-text-dark">Ден 5 (Чет 24 Апр): <span class="font-normal text-text">Сърцето на Пикос де Еуропа</span></p>
-                     <p class="text-base mt-2 text-text-light">Изкачване с <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 text-gray-500"><path d="M10 3.12a7.3 7.3 0 0 0-7.3 7.3 7.3 7.3 0 0 0 7.3 7.3 7.3 7.3 0 0 0 7.3-7.3"/><path d="M10 10.42V21"/><path d="M16.46 16.46 21 21"/><path d="M3 10.42h7.58"/><path d="M16.46 4.38 21 8.86"/><path d="M10 3.12V8.86"/><path d="m10 8.86 4.44-4.44"/><path d="M10 10.42 5.56 14.8"/><path d="M14.44 14.8 10 10.42"/><path d="M3 10.42 5.56 5.5"/></svg> лифта Фуенте Де (по желание), лек преход или наслаждаване на пейзажа <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 text-gray-500"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/><path d="M4.14 15.08c2.62-1.57 5.24-1.43 7.86.42 2.74 1.94 5.49 2 8.23.16"/></svg>. Нощувка в База 2.</p> </div>
+                     <p class="font-semibold text-xl text-text-dark" data-key="itinerary.day5.title">Ден 5 (Чет 24 Апр): <span class="font-normal text-text">Сърцето на Пикос де Еуропа</span></p>
+                     <p class="text-base mt-2 text-text-light" data-key="itinerary.day5.desc">Изкачване с лифта Фуенте Де (по желание), лек преход или наслаждаване на пейзажа. Нощувка в База 2.</p>
+                </div>
                  <div class="p-5 border-l-4 border-primary-light rounded-r-md bg-slate-50">
-                     <p class="font-semibold text-xl text-text-dark">Ден 6 (Пет 25 Апр): <span class="font-normal text-text">Пикос <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-5 h-5 text-gray-500"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg> Ларедо и Кастро <span class="text-xs italic">(Посещение)</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-5 h-5 text-gray-500"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg> Памплона</span></p>
-                     <p class="text-base mt-2 text-text-light">Спокойна сутрин в Пикос, връщане с посещение на Ларедо и Кастро Урдиалес. Пристигане в Памплона. <span class="font-medium text-secondary">(Дълъг ден)</span></p>
+                     <p class="font-semibold text-xl text-text-dark" data-key="itinerary.day6.title">Ден 6 (Пет 25 Апр): <span class="font-normal text-text">Пикос -> Ларедо и Кастро (Посещение) -> Памплона</span></p>
+                     <p class="text-base mt-2 text-text-light" data-key="itinerary.day6.desc">Спокойна сутрин в Пикос, връщане с посещение на Ларедо и Кастро Урдиалес. Пристигане в Памплона. <span class="font-medium text-secondary" data-key="itinerary.day6.note">(Дълъг ден)</span></p>
                 </div>
             </div>
-             <p class="text-sm text-text-light mt-8 text-center italic">Коригиран маршрут: Кабарсено цял ден, Ларедо/Кастро на връщане.</p>
+             <p class="text-sm text-text-light mt-8 text-center italic" data-key="itinerary.note">Коригиран маршрут: Кабарсено цял ден, Ларедо/Кастро на връщане.</p>
         </section>
 
         <section class="mb-12 p-8 bg-card rounded-lg shadow-md">
             <h2 class="text-4xl font-semibold text-text-dark mb-8 text-center">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><path d="M2 4v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M2 10h20"/><path d="M10 16V6a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v10"/></svg>
-                Предложения за настаняване
+                <span data-key="accommodation.title">Предложения за настаняване</span>
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8"> <div class="border border-gray-200 p-6 rounded-lg bg-slate-50 text-center shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <div class="border border-gray-200 p-6 rounded-lg bg-slate-50 text-center shadow-sm hover:shadow-md transition-shadow duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-3xl text-primary mb-3"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
-                    <h3 class="font-semibold text-xl text-text-dark mb-2">База 1: Централна зона</h3>
-                    <p class="text-sm text-text-light mb-3">Сантиляна, Суансес</p>
-                     <p class="text-lg font-medium text-primary">3 нощувки (Дни 1-3)</p>
+                    <h3 class="font-semibold text-xl text-text-dark mb-2" data-key="accommodation.base1.name">База 1: Централна зона</h3>
+                    <p class="text-sm text-text-light mb-3" data-key="accommodation.base1.location">Сантиляна, Суансес</p>
+                    <p class="text-lg font-medium text-primary" data-key="accommodation.base1.nights">3 нощувки (Дни 1-3)</p>
                 </div>
                 <div class="border border-gray-200 p-6 rounded-lg bg-slate-50 text-center shadow-sm hover:shadow-md transition-shadow duration-300">
                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-3xl text-primary mb-3"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                    <h3 class="font-semibold text-xl text-text-dark mb-2">База 2: Пикос де Еуропа</h3>
-                    <p class="text-sm text-text-light mb-3">Потес, Фуенте Де</p>
-                     <p class="text-lg font-medium text-primary">2 нощувки (Дни 4-5)</p>
+                    <h3 class="font-semibold text-xl text-text-dark mb-2" data-key="accommodation.base2.name">База 2: Пикос де Еуропа</h3>
+                    <p class="text-sm text-text-light mb-3" data-key="accommodation.base2.location">Потес, Фуенте Де</p>
+                     <p class="text-lg font-medium text-primary" data-key="accommodation.base2.nights">2 нощувки (Дни 4-5)</p>
                 </div>
             </div>
-            <p class="text-md text-text-light mt-8 text-center">Търсете: Апартаменти, селски къщи, семейни хотели.</p>
+            <p class="text-md text-text-light mt-8 text-center" data-key="accommodation.types">Търсете: Апартаменти, селски къщи, семейни хотели.</p>
         </section>
 
          <section class="p-8 bg-card rounded-lg shadow-md">
             <h2 class="text-4xl font-semibold text-text-dark mb-8 text-center">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>
-                Бележки и предстоящи задачи
+                <span data-key="notes.title">Бележки и предстоящи задачи</span>
             </h2>
-            <textarea class="w-full h-40 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-text bg-white mb-6" placeholder="Добавете тук вашите бележки, идеи, списъци с багаж, резервации..."></textarea>
+            <textarea data-placeholder-key="notes.placeholder" class="w-full h-40 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-text bg-white mb-6" placeholder="Добавете тук вашите бележки, идеи, списъци с багаж, резервации..."></textarea>
             <ul class="space-y-3 text-text">
                  <li class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-secondary mr-2 w-5 h-5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
-                    <span class="text-secondary font-medium mr-1">[Предстоящо]</span> Резервирайте билети <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 mx-1 text-gray-500"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg> Сан Хуан де Гастелугаче.
+                    <span class="text-secondary font-medium mr-1">[<span data-key="notes.pending">Предстоящо</span>]</span> <span data-key="notes.task1">Резервирайте билети</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 mx-1 text-gray-500"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg> <span data-key="notes.task1_target">Сан Хуан де Гастелугаче</span>.
                 </li>
                 <li class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-secondary mr-2 w-5 h-5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
-                    <span class="text-secondary font-medium mr-1">[Предстоящо]</span> Резервирайте билети <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 mx-1 text-gray-500"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg> Кабарсено (онлайн).
+                    <span class="text-secondary font-medium mr-1">[<span data-key="notes.pending">Предстоящо</span>]</span> <span data-key="notes.task2">Резервирайте билети</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 mx-1 text-gray-500"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg> <span data-key="notes.task2_target">Кабарсено (онлайн)</span>.
                 </li>
                  <li class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-secondary mr-2 w-5 h-5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
-                    <span class="text-secondary font-medium mr-1">[Предстоящо]</span> Резервирайте настаняване (База 1 и 2). </li>
+                    <span class="text-secondary font-medium mr-1">[<span data-key="notes.pending">Предстоящо</span>]</span> <span data-key="notes.task3">Резервирайте настаняване (База 1 и 2)</span>. </li>
                  <li class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-secondary mr-2 w-5 h-5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
-                    <span class="text-secondary font-medium mr-1">[Предстоящо]</span> Проверете лифта Фуенте Де (работно време, статус).
+                    <span class="text-secondary font-medium mr-1">[<span data-key="notes.pending">Предстоящо</span>]</span> <span data-key="notes.task4">Проверете лифта Фуенте Де (работно време, статус)</span>.
                 </li>
                 <li class="flex items-center text-text-light line-through">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-green-500 mr-2 w-5 h-5"><path d="M20 6 9 17l-5-5"/></svg>
-                    Подгответе разнообразни дрехи и обувки (на слоеве!).
+                    <span data-key="notes.task5">Подгответе разнообразни дрехи и обувки (на слоеве!)</span>.
                 </li>
                 <li class="flex items-center text-text-light line-through">
                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-green-500 mr-2 w-5 h-5"><path d="M20 6 9 17l-5-5"/></svg>
-                    Проверете колата (гуми, нива на течности).
+                    <span data-key="notes.task6">Проверете колата (гуми, нива на течности)</span>.
                 </li>
             </ul>
         </section>
 
         <footer class="text-center mt-12 pt-8 border-t border-gray-200">
-            <p class="text-lg font-semibold text-primary">Приятно пътуване, семейство Галагара - Андреева!</p>
-            <p class="text-xs text-text-light mt-2">Планировчик v17</p>
+            <p class="text-lg font-semibold text-primary" data-key="footer.greeting">Приятно пътуване, семейство Галагара - Андреева!</p>
+            <p class="text-xs text-text-light mt-2" data-key="footer.version">Планировчик v18</p>
         </footer>
 
     </div>
+
+    <script>
+        // Simple i18n Dictionary
+        const translations = {
+            // Bulgarian (Default)
+            bg: {
+                'page.title': 'План за 6-дневно семейно пътуване Галагара - Андреева (v18 BG/EN)',
+                'header.icon.title': 'Икона за семейно пътуване',
+                'header.title': 'Семейно пътуване: Кантабрия и Баското крайбрежие',
+                'header.dates': '20 - 25 април 2025 г. (6 дни)',
+                'banner.alt': '[Изображение на пейзаж от Кантабрия]',
+                'family.photo.alt': 'Снимка на семейство Галагара-Андреева',
+                'family.title': 'Екипажът',
+                'family.origin': 'Пътуване от Памплона',
+                'destinations.title': 'Основни дестинации',
+                'dest.laredo_castro.svg.title': 'Бряг и пристанище',
+                'dest.laredo_castro.name': 'Ларедо / Кастро У.',
+                'dest.laredo.link': 'Туризъм Ларедо',
+                'dest.castro.link': 'Туризъм Кастро Урдиалес',
+                'dest.gaztelugatxe.svg.title': 'Остров и параклис Гастелугаче',
+                'dest.gaztelugatxe.name': 'Сан Хуан де Гастелугаче',
+                'dest.cabarceno.svg.title': 'Животни в Кабарсено',
+                'dest.cabarceno.name': 'Парк Кабарсено',
+                'dest.santillana.svg.title': 'Улици на Сантиляна',
+                'dest.santillana.name': 'Сантиляна дел Мар',
+                'dest.san_vicente.svg.title': 'Мост Сан Висенте',
+                'dest.san_vicente.name': 'Сан Висенте де ла Б.',
+                'dest.picos.svg.title': 'Планини Пикос де Еуропа',
+                'dest.picos.name': 'Пикос де Еуропа',
+                'map.title': 'Общ маршрут',
+                'map.svg.title': 'Стилизирана карта на маршрута - Кликнете, за да видите в Google Maps',
+                'map.start': 'Памплона (Начало)',
+                'map.point1': 'Баско/Източно крайбрежие',
+                'map.point2': 'Централна зона (Кантабрия)',
+                'map.point3': 'Потес/Пикос',
+                'map.end': 'Пикос де Еуропа (Зона)',
+                'map.link_text': '(Кликнете, за да видите подробен маршрут в Google Maps)',
+                'itinerary.title': 'Предложение за маршрут (Коригиран)',
+                'itinerary.day1.title': 'Ден 1 (Нед 20 Апр): Памплона -> Гастелугаче (Посещение) -> Зона Сантиляна',
+                'itinerary.day1.desc': 'Отпътуване (12:00ч), посещение Гастелугаче (резервирайте!). Пътуване към зона Сантиляна. Нощувка в База 1.',
+                'itinerary.day2.title': 'Ден 2 (Пон 21 Апр): Парк Кабарсено (Цял ден)',
+                'itinerary.day2.desc': 'Цял ден, посветен на разглеждане на Кабарсено. Нощувка в База 1.',
+                'itinerary.day3.title': 'Ден 3 (Вто 22 Апр): Сантиляна & Сан Висенте',
+                'itinerary.day3.desc': 'Посещение на Сантиляна дел Мар сутринта и Сан Висенте де ла Баркера следобед. Нощувка в База 1.',
+                'itinerary.day4.title': 'Ден 4 (Сря 23 Апр): Пътуване до Пикос -> Потес',
+                'itinerary.day4.desc': 'Пътуване до Пикос де Еуропа, настаняване в База 2, следобед разглеждане на Потес.',
+                'itinerary.day5.title': 'Ден 5 (Чет 24 Апр): Сърцето на Пикос де Еуропа',
+                'itinerary.day5.desc': 'Изкачване с лифта Фуенте Де (по желание), лек преход или наслаждаване на пейзажа. Нощувка в База 2.',
+                'itinerary.day6.title': 'Ден 6 (Пет 25 Апр): Пикос -> Ларедо и Кастро (Посещение) -> Памплона',
+                'itinerary.day6.desc': 'Спокойна сутрин в Пикос, връщане с посещение на Ларедо и Кастро Урдиалес. Пристигане в Памплона.',
+                'itinerary.day6.note': '(Дълъг ден)',
+                'itinerary.note': 'Коригиран маршрут: Кабарсено цял ден, Ларедо/Кастро на връщане.',
+                'accommodation.title': 'Предложения за настаняване',
+                'accommodation.base1.name': 'База 1: Централна зона',
+                'accommodation.base1.location': 'Сантиляна, Суансес',
+                'accommodation.base1.nights': '3 нощувки (Дни 1-3)',
+                'accommodation.base2.name': 'База 2: Пикос де Еуропа',
+                'accommodation.base2.location': 'Потес, Фуенте Де',
+                'accommodation.base2.nights': '2 нощувки (Дни 4-5)',
+                'accommodation.types': 'Търсете: Апартаменти, селски къщи, семейни хотели.',
+                'notes.title': 'Бележки и предстоящи задачи',
+                'notes.placeholder': 'Добавете тук вашите бележки, идеи, списъци с багаж, резервации...',
+                'notes.pending': 'Предстоящо',
+                'notes.task1': 'Резервирайте билети',
+                'notes.task1_target': 'Сан Хуан де Гастелугаче',
+                'notes.task2': 'Резервирайте билети',
+                'notes.task2_target': 'Кабарсено (онлайн)',
+                'notes.task3': 'Резервирайте настаняване (База 1 и 2)',
+                'notes.task4': 'Проверете лифта Фуенте Де (работно време, статус)',
+                'notes.task5': 'Подгответе разнообразни дрехи и обувки (на слоеве!)',
+                'notes.task6': 'Проверете колата (гуми, нива на течности)',
+                'footer.greeting': 'Приятно пътуване, семейство Галагара - Андреева!',
+                'footer.version': 'Планировчик v18'
+            },
+            // English Translations
+            en: {
+                'page.title': '6-Day Family Trip Plan Galarraga - Andreeva (v18 BG/EN)',
+                'header.icon.title': 'Family Trip Icon',
+                'header.title': 'Family Trip: Cantabria and Basque Coast',
+                'header.dates': 'April 20 - 25, 2025 (6 Days)',
+                'banner.alt': '[Image of Landscape from Northern Spain]',
+                'family.photo.alt': 'Photo of the Galarraga-Andreeva family',
+                'family.title': 'The Crew',
+                'family.origin': 'Traveling from Pamplona',
+                'destinations.title': 'Main Destinations',
+                'dest.laredo_castro.svg.title': 'Coast and Port',
+                'dest.laredo_castro.name': 'Laredo / Castro U.',
+                'dest.laredo.link': 'Laredo Tourism',
+                'dest.castro.link': 'Castro Urdiales Tourism',
+                'dest.gaztelugatxe.svg.title': 'Island and Hermitage of Gaztelugatxe',
+                'dest.gaztelugatxe.name': 'San Juan de Gaztelugatxe',
+                'dest.cabarceno.svg.title': 'Animals of Cabárceno',
+                'dest.cabarceno.name': 'Cabárceno Park',
+                'dest.santillana.svg.title': 'Streets of Santillana',
+                'dest.santillana.name': 'Santillana del Mar',
+                'dest.san_vicente.svg.title': 'San Vicente Bridge',
+                'dest.san_vicente.name': 'San Vicente de la B.',
+                'dest.picos.svg.title': 'Picos de Europa Mountains',
+                'dest.picos.name': 'Picos de Europa',
+                'map.title': 'General Route',
+                'map.svg.title': 'Stylized map of the route - Click to see in Google Maps',
+                'map.start': 'Pamplona (Start)',
+                'map.point1': 'Basque/Eastern Coast',
+                'map.point2': 'Central Zone (Cantabria)',
+                'map.point3': 'Potes/Picos',
+                'map.end': 'Picos de Europa (Area)',
+                'map.link_text': '(Click to see detailed route in Google Maps)',
+                'itinerary.title': 'Proposed Itinerary (Adjusted)',
+                'itinerary.day1.title': 'Day 1 (Sun Apr 20): Pamplona -> Gaztelugatxe (Visit) -> Santillana Area',
+                'itinerary.day1.desc': 'Departure (12:00 PM), visit Gaztelugatxe (book!). Travel towards Santillana area. Night at Base 1.',
+                'itinerary.day2.title': 'Day 2 (Mon Apr 21): Cabárceno Park (Full Day)',
+                'itinerary.day2.desc': 'Full day dedicated to exploring Cabárceno. Night at Base 1.',
+                'itinerary.day3.title': 'Day 3 (Tue Apr 22): Santillana & San Vicente',
+                'itinerary.day3.desc': 'Visit Santillana del Mar in the morning and San Vicente de la Barquera in the afternoon. Night at Base 1.',
+                'itinerary.day4.title': 'Day 4 (Wed Apr 23): Travel to Picos -> Potes',
+                'itinerary.day4.desc': 'Travel to Picos de Europa, check-in at Base 2, afternoon exploring Potes.',
+                'itinerary.day5.title': 'Day 5 (Thu Apr 24): Heart of Picos de Europa',
+                'itinerary.day5.desc': 'Ride the Fuente Dé Cable Car (optional), easy hike or enjoy the scenery. Night at Base 2.',
+                'itinerary.day6.title': 'Day 6 (Fri Apr 25): Picos -> Laredo & Castro (Visit) -> Pamplona',
+                'itinerary.day6.desc': 'Leisurely morning in Picos, return trip with stops to visit Laredo and Castro Urdiales. Arrival in Pamplona.',
+                'itinerary.day6.note': '(Long day)',
+                'itinerary.note': 'Adjusted itinerary: Cabárceno full day, Laredo/Castro on return.',
+                'accommodation.title': 'Accommodation Suggestions',
+                'accommodation.base1.name': 'Base 1: Central Zone',
+                'accommodation.base1.location': 'Santillana, Suances',
+                'accommodation.base1.nights': '3 Nights (Days 1-3)',
+                'accommodation.base2.name': 'Base 2: Picos de Europa',
+                'accommodation.base2.location': 'Potes, Fuente Dé',
+                'accommodation.base2.nights': '2 Nights (Days 4-5)',
+                'accommodation.types': 'Look for: Apartments, rural inns, family hotels.',
+                'notes.title': 'Notes and Pending Tasks',
+                'notes.placeholder': 'Add your notes, ideas, packing lists, reservations here...',
+                'notes.pending': 'Pending',
+                'notes.task1': 'Book tickets',
+                'notes.task1_target': 'San Juan de Gaztelugatxe',
+                'notes.task2': 'Book tickets',
+                'notes.task2_target': 'Cabárceno (online)',
+                'notes.task3': 'Book accommodation (Base 1 & 2)',
+                'notes.task4': 'Check Fuente Dé Cable Car (times, status)',
+                'notes.task5': 'Prepare varied clothing and footwear (layers!)',
+                'notes.task6': 'Check the car (tires, fluids)',
+                'footer.greeting': 'Have a fantastic trip, Galarraga - Andreeva Family!',
+                'footer.version': 'Planner v18'
+            }
+        };
+
+        // Function to set the language
+        function setLanguage(lang) {
+            // Set HTML lang attribute
+            document.documentElement.lang = lang;
+
+            // Update all elements with data-key
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                const translation = translations[lang]?.[key];
+
+                if (translation !== undefined) {
+                    // Check for specific attribute updates
+                    if (element.hasAttribute('data-alt-key')) {
+                        element.alt = translation;
+                    } else if (element.hasAttribute('data-placeholder-key')) {
+                        element.placeholder = translation;
+                    } else if (element.tagName === 'TITLE' && element.parentElement.tagName === 'SVG') {
+                         // Update title inside SVG
+                         element.textContent = translation;
+                    } else if (element.tagName === 'TITLE' && element.parentElement.tagName === 'HEAD') {
+                         // Update main page title
+                         document.title = translation;
+                    }
+                    else {
+                        // Update inner text/HTML for most elements
+                        // Use innerHTML carefully, only if keys contain safe HTML like the itinerary day titles
+                        if (key.startsWith('itinerary.day') && key.endsWith('.title')) {
+                             // Split title parts if needed, or just set innerHTML if safe
+                             // For simplicity here, assuming the structure within span is stable
+                             const mainTitleElement = element.querySelector('span:first-of-type');
+                             if(mainTitleElement) {
+                                 // This is a basic update, might need refinement if HTML structure is complex
+                                 element.innerHTML = translation; // Assumes translation includes the necessary HTML structure
+                             } else {
+                                 element.textContent = translation;
+                             }
+                        } else {
+                           element.textContent = translation;
+                        }
+                    }
+                } else {
+                    console.warn(`Translation key not found for language '${lang}': ${key}`);
+                }
+            });
+
+             // Update language button active state
+             document.querySelectorAll('.lang-button').forEach(button => {
+                button.classList.remove('active');
+             });
+             const activeButton = document.getElementById(`lang-${lang}`);
+             if (activeButton) {
+                activeButton.classList.add('active');
+             }
+        }
+
+        // Set default language on page load
+        window.onload = () => {
+            setLanguage('bg'); // Default to Bulgarian
+        };
+
+    </script>
 
 </body>
 </html>
