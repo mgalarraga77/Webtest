@@ -3,54 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan Viaje 6 Días Familia Galarraga - Andreeva (v2)</title>
+    <title>Plan Viaje 6 Días Familia Galarraga - Andreeva (v5 Iconos SVG)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-      @font-face {
-        font-family: 'LucideIcons';
-        src: url(https://cdn.jsdelivr.net/npm/lucide-static@latest/font/Lucide.ttf) format('truetype');
-      }
-      .lucide {
-        font-family: 'LucideIcons';
-        font-style: normal;
-        font-weight: normal;
-        font-variant: normal;
-        text-rendering: auto;
-        line-height: 1;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        display: inline-block;
-        vertical-align: middle;
-        margin-right: 0.35rem; /* Slightly increased margin */
-      }
-      /* Clases específicas para iconos */
-      .icon-map-pin::before { content: "\e9b3"; }
-      .icon-bed::before { content: "\e8c7"; }
-      .icon-calendar-days::before { content: "\e8e9"; }
-      .icon-car::before { content: "\e8ee"; }
-      .icon-users::before { content: "\eb13"; }
-      .icon-clipboard-list::before { content: "\e921"; }
-      .icon-route::before { content: "\ea5c"; }
-      .icon-camera::before { content: "\e8ef"; }
-      .icon-mountain-snow::before { content: "\e9cd"; } /* Picos */
-      .icon-ship-wheel::before { content: "\ea81"; } /* Costa */
-      .icon-palmtree::before { content: "\ea0a"; } /* Cabarceno? */
-      .icon-castle::before { content: "\e8f1"; } /* Santillana */
-
-      /* Estilo para cards de destino */
+      /* Estilo para cards de destino interactivas */
       .destination-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        border: 1px solid #e5e7eb; /* gray-200 */
       }
       .destination-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+        border-color: #3b82f6; /* primary-light */
       }
+      /* Efecto hover en imagen dentro de la card */
+      .destination-card img {
+        transition: opacity 0.3s ease;
+      }
+      .destination-card:hover img {
+        opacity: 0.85;
+      }
+
+      /* Estilo para el icono SVG de enlace externo (se mantiene) */
+      .external-link-icon {
+        width: 0.75em;
+        height: 0.75em;
+        display: inline-block;
+        vertical-align: baseline;
+        margin-left: 0.25em;
+        stroke-width: 3;
+        color: #9ca3af; /* gray-400 */
+        transition: color 0.3s ease;
+      }
+      a:hover .external-link-icon {
+         color: #1e40af; /* primary */
+      }
+
+      /* Estilos para los SVGs incrustados */
+      .inline-svg-icon {
+          display: inline-block;
+          vertical-align: -0.15em; /* Ajuste vertical similar al de .lucide */
+          width: 1.1em; /* Tamaño similar al de .lucide */
+          height: 1.1em;
+          margin-right: 0.3em;
+      }
+
     </style>
     <script>
-      // Configuración de Tailwind
+      // Configuración de Tailwind (sin cambios)
       tailwind.config = {
         theme: {
           extend: {
@@ -58,180 +61,272 @@
               sans: ['Inter', 'sans-serif'],
             },
             colors: {
-              primary: { // Using object for shades
-                DEFAULT: '#1e40af', // Azul oscuro 700
-                light: '#3b82f6', // Azul medio 500
-                dark: '#1e3a8a' // Azul más oscuro 800
+              primary: {
+                DEFAULT: '#2563eb', // Blue 600 (principal)
+                light: '#60a5fa', // Blue 400 (más claro)
+                dark: '#1d4ed8'  // Blue 700 (más oscuro)
               },
-              secondary: '#f59e0b', // Naranja/ámbar 500
-              accent: '#10b981', // Verde esmeralda 500
-              background: '#f1f5f9', // Slate 100 (slightly darker bg)
-              card: '#ffffff', // White for cards
+              secondary: '#f97316', // Orange 600 (para alertas/pendientes)
+              accent: '#10b981',   // Emerald 500 (uso muy puntual)
+              background: '#f8fafc', // Slate 50 (fondo general)
+              card: '#ffffff',     // White (fondo tarjetas)
+              text: {
+                  DEFAULT: '#374151', // Gray 700 (texto principal)
+                  light: '#6b7280', // Gray 500 (texto secundario)
+                  dark: '#1f2937'   // Gray 800 (títulos)
+              }
             },
             boxShadow: {
-              'subtle': '0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07)',
-              'medium': '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+              'md': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+              'lg': '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
             }
           }
         }
       }
     </script>
 </head>
-<body class="bg-background font-sans text-gray-700 antialiased">
+<body class="bg-background font-sans text-text antialiased">
 
-    <div class="container mx-auto p-4 md:p-8 max-w-5xl"> <header class="text-center mb-6">
-            <h1 class="text-4xl md:text-5xl font-bold text-primary-dark mb-2">Viaje Familiar Galarraga - Andreeva</h1>
-            <p class="text-xl text-primary-light"><span class="lucide icon-calendar-days"></span>20 - 25 de Abril, 2025 (6 Días)</p>
-            <p class="text-lg text-gray-600"><span class="lucide icon-car"></span>Ruta por Cantabria y alrededores desde Pamplona</p>
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <header class="text-center mb-8 pb-4 border-b border-gray-200">
+            <h1 class="text-4xl md:text-5xl font-bold text-text-dark mb-2">Viaje Familiar: Cantabria y Costa Vasca</h1>
+            <p class="text-xl text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
+                20 - 25 de Abril, 2025 (6 Días)
+            </p>
         </header>
 
-        <section class="mb-10 rounded-lg overflow-hidden shadow-medium">
-             <img src="https://placehold.co/1200x300/a5b4fc/1e3a8a?text=Aventura+en+Cantabria"
-                  alt="[Imagen de Paisaje de Cantabria]"
+        <section class="mb-12 rounded-lg overflow-hidden shadow-lg">
+             <img src="https://placehold.co/1400x350/60a5fa/1d4ed8?text=Aventura+Familiar+en+el+Norte"
+                  alt="[Imagen de Paisaje del Norte de España]"
                   class="w-full h-auto object-cover"
                   onerror="this.onerror=null; this.style.display='none';">
         </section>
 
-        <section class="mb-10 p-6 md:p-8 bg-card rounded-lg shadow-subtle flex flex-col md:flex-row items-center gap-8">
+        <section class="mb-12 p-8 bg-card rounded-lg shadow-md flex flex-col md:flex-row items-center gap-8">
              <div class="md:w-1/3 flex-shrink-0">
                  <img
                     src="/download/image_1c37cf.jpg-3abea4d2-1d23-4274-a57b-52c1c52f0b0f"
                     alt="Foto de la familia Galarraga-Andreeva"
-                    class="rounded-lg shadow-medium w-full h-auto object-cover"
+                    class="rounded-lg shadow-md w-full h-auto object-cover"
                     onerror="this.onerror=null; this.src='https://placehold.co/300x200/e2e8f0/64748b?text=Foto+Familiar'; this.alt='Imagen no disponible'"
                  >
             </div>
             <div class="md:w-2/3 text-center md:text-left">
-                <h2 class="text-3xl font-semibold text-primary-dark mb-4"><span class="lucide icon-users text-primary-light"></span>La Tripulación</h2>
-                <ul class="text-lg space-y-2 text-gray-800">
-                    <li>Miguel (47 años)</li>
-                    <li>Mariya (43 años)</li>
-                    <li>Cristina (13 años)</li>
-                    <li>Ana (10 años)</li>
-                    <li>Martín (7 años)</li>
+                <h2 class="text-3xl font-semibold text-text-dark mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    La Tripulación
+                </h2>
+                <ul class="text-lg space-y-2 text-text">
+                    <li>Miguel</li>
+                    <li>Mariya</li>
+                    <li>Cristina</li>
+                    <li>Ana</li>
+                    <li>Martín</li>
                 </ul>
+                <p class="text-sm text-text-light mt-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary w-4 h-4 mr-1"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
+                    Viajando desde Pamplona
+                </p>
             </div>
         </section>
 
-        <section class="mb-10 p-6 md:p-8 bg-card rounded-lg shadow-subtle">
-            <h2 class="text-3xl font-semibold text-primary-dark mb-6 text-center"><span class="lucide icon-map-pin text-primary-light"></span>Destinos Principales</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="destination-card border border-gray-200 rounded-lg overflow-hidden bg-gray-50 shadow-subtle">
-                    <img src="https://placehold.co/400x250/3b82f6/ffffff?text=Costa+(Laredo/Castro)" alt="[Imagen de Costa Cantábrica]" class="w-full h-32 object-cover" onerror="this.style.display='none'">
-                    <div class="p-4">
-                        <h3 class="font-semibold text-lg text-primary"><span class="lucide icon-ship-wheel text-primary-light"></span>Laredo / Castro U.</h3>
+        <section class="mb-12 p-8 bg-card rounded-lg shadow-md">
+            <h2 class="text-4xl font-semibold text-text-dark mb-8 text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                Destinos Principales
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                  <symbol id="external-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </symbol>
+                </svg>
+
+                <a href="https://turismolaredo.es/" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
+                    <img src="https://placehold.co/400x250/60a5fa/ffffff?text=Costa+(Laredo/Castro)" alt="[Imagen de Costa Cantábrica]" class="w-full h-40 object-cover" onerror="this.style.display='none'">
+                    <div class="p-5">
+                        <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary transition-colors duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><circle cx="12" cy="12" r="8"/><path d="M12 2v7.5"/><path d="m19.4 5-5.2 3.4"/><path d="M22 12h-7.5"/><path d="m19.4 19-5.2-3.4"/><path d="M12 22v-7.5"/><path d="m4.6 19 5.2-3.4"/><path d="M2 12h7.5"/><path d="m4.6 5 5.2 3.4"/><circle cx="12" cy="12" r="2"/></svg>
+                            Laredo / Castro U.
+                           <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg>
+                        </h3>
+                        <span class="text-xs text-text-light block mt-1">turismolaredo.es / visitcastrourdiales.es</span>
                     </div>
-                </div>
-                <div class="destination-card border border-gray-200 rounded-lg overflow-hidden bg-gray-50 shadow-subtle">
-                    <img src="https://placehold.co/400x250/1e40af/ffffff?text=Gaztelugatxe" alt="[Imagen de San Juan de Gaztelugatxe]" class="w-full h-32 object-cover" onerror="this.style.display='none'">
-                    <div class="p-4">
-                        <h3 class="font-semibold text-lg text-primary"><span class="lucide icon-camera text-primary-light"></span>San Juan de Gaztelugatxe</h3>
+                </a>
+                <a href="https://www.bizkaia.eus/es/gaztelugatxe" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
+                    <img src="https://placehold.co/400x250/1d4ed8/ffffff?text=Gaztelugatxe" alt="[Imagen de San Juan de Gaztelugatxe]" class="w-full h-40 object-cover" onerror="this.style.display='none'">
+                    <div class="p-5">
+                        <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary transition-colors duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+                            S. J. de Gaztelugatxe
+                           <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg>
+                        </h3>
+                         <span class="text-xs text-text-light block mt-1">bizkaia.eus/es/gaztelugatxe</span>
                     </div>
-                </div>
-                 <div class="destination-card border border-gray-200 rounded-lg overflow-hidden bg-gray-50 shadow-subtle">
-                    <img src="https://placehold.co/400x250/f59e0b/ffffff?text=Cabárceno" alt="[Imagen de Parque de Cabárceno]" class="w-full h-32 object-cover" onerror="this.style.display='none'">
-                    <div class="p-4">
-                        <h3 class="font-semibold text-lg text-primary"><span class="lucide icon-palmtree text-secondary"></span>Parque de Cabárceno</h3>
+                </a>
+                 <a href="https://parquedecabarceno.com/" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
+                    <img src="https://placehold.co/400x250/f97316/ffffff?text=Cabárceno" alt="[Imagen de Parque de Cabárceno]" class="w-full h-40 object-cover" onerror="this.style.display='none'">
+                    <div class="p-5">
+                        <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary transition-colors duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-secondary"><path d="M13 8c0-4.418-3.134-8-7-8s-7 3.582-7 8 3.134 8 7 8 7-3.582 7-8z"/><path d="M12 12c0-4.418-3.134-8-7-8s-7 3.582-7 8 3.134 8 7 8 7-3.582 7-8z"/><path d="M12 20c0-4.418-3.134-8-7-8s-7 3.582-7 8 3.134 8 7 8 7-3.582 7-8z"/><path d="M16 16c0-4.418-3.134-8-7-8s-7 3.582-7 8 3.134 8 7 8 7-3.582 7-8z"/><path d="M13 19a7 7 0 0 1 7-7"/><path d="M13 12a7 7 0 0 1 7-7"/><path d="M13 8a7 7 0 0 1 7-7"/></svg>
+                            Parque de Cabárceno
+                           <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg>
+                        </h3>
+                         <span class="text-xs text-text-light block mt-1">parquedecabarceno.com</span>
                     </div>
-                </div>
-                 <div class="destination-card border border-gray-200 rounded-lg overflow-hidden bg-gray-50 shadow-subtle">
-                    <img src="https://placehold.co/400x250/10b981/ffffff?text=Santillana" alt="[Imagen de Santillana del Mar]" class="w-full h-32 object-cover" onerror="this.style.display='none'">
-                    <div class="p-4">
-                        <h3 class="font-semibold text-lg text-primary"><span class="lucide icon-castle text-accent"></span>Santillana del Mar</h3>
+                </a>
+                 <a href="https://www.santillanadelmarturismo.com/" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
+                    <img src="https://placehold.co/400x250/10b981/ffffff?text=Santillana" alt="[Imagen de Santillana del Mar]" class="w-full h-40 object-cover" onerror="this.style.display='none'">
+                    <div class="p-5">
+                        <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary transition-colors duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-accent"><path d="M22 13v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8"/><path d="M19 16v-3a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v3"/><path d="M19 22v-6"/><path d="M14 22v-6"/><path d="M10 16H6v6h4v-6z"/><path d="M10 5.5V4a2 2 0 1 0-4 0v1.5"/><path d="m19 13 3-3 3 3"/><path d="m14 11 3-3 3 3"/></svg>
+                            Santillana del Mar
+                           <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg>
+                        </h3>
+                         <span class="text-xs text-text-light block mt-1">santillanadelmarturismo.com</span>
                     </div>
-                </div>
-                <div class="destination-card border border-gray-200 rounded-lg overflow-hidden bg-gray-50 shadow-subtle">
-                    <img src="https://placehold.co/400x250/6366f1/ffffff?text=San+Vicente" alt="[Imagen de San Vicente de la Barquera]" class="w-full h-32 object-cover" onerror="this.style.display='none'">
-                    <div class="p-4">
-                        <h3 class="font-semibold text-lg text-primary"><span class="lucide icon-ship-wheel text-indigo-500"></span>San Vicente de la Barquera</h3>
+                </a>
+                <a href="https://www.sanvicentedelabarquera.es/turismo/" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
+                    <img src="https://placehold.co/400x250/8b5cf6/ffffff?text=San+Vicente" alt="[Imagen de San Vicente de la Barquera]" class="w-full h-40 object-cover" onerror="this.style.display='none'">
+                    <div class="p-5">
+                        <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary transition-colors duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-violet-500"><circle cx="12" cy="12" r="8"/><path d="M12 2v7.5"/><path d="m19.4 5-5.2 3.4"/><path d="M22 12h-7.5"/><path d="m19.4 19-5.2-3.4"/><path d="M12 22v-7.5"/><path d="m4.6 19 5.2-3.4"/><path d="M2 12h7.5"/><path d="m4.6 5 5.2 3.4"/><circle cx="12" cy="12" r="2"/></svg>
+                            San Vicente de la B.
+                           <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg>
+                        </h3>
+                         <span class="text-xs text-text-light block mt-1">sanvicentedelabarquera.es</span>
                     </div>
-                </div>
-                <div class="destination-card border border-gray-200 rounded-lg overflow-hidden bg-gray-50 shadow-subtle">
-                    <img src="https://placehold.co/400x250/6b7280/ffffff?text=Picos+Europa" alt="[Imagen de Picos de Europa]" class="w-full h-32 object-cover" onerror="this.style.display='none'">
-                    <div class="p-4">
-                        <h3 class="font-semibold text-lg text-primary"><span class="lucide icon-mountain-snow text-gray-500"></span>Picos de Europa</h3>
+                </a>
+                <a href="https://cantur.com/instalaciones/5-teleferico-de-fuente-de" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
+                    <img src="https://placehold.co/400x250/6b7280/ffffff?text=Picos+Europa" alt="[Imagen de Picos de Europa]" class="w-full h-40 object-cover" onerror="this.style.display='none'">
+                    <div class="p-5">
+                        <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary transition-colors duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-gray-500"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/><path d="M4.14 15.08c2.62-1.57 5.24-1.43 7.86.42 2.74 1.94 5.49 2 8.23.16"/></svg>
+                            Picos de Europa
+                           <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg>
+                        </h3>
+                         <span class="text-xs text-text-light block mt-1">cantur.com (Fuente Dé)</span>
                     </div>
-                </div>
-            </div>
-             <div class="text-center mt-6">
-                 <a href="https://www.google.com/maps/dir/Pamplona/Laredo,+Cantabria/San+Juan+de+Gaztelugatxe,+Bermeo/Castro-Urdiales,+Cantabria/Parque+de+la+Naturaleza+de+Cab%C3%A1rceno,+Cab%C3%A1rceno/Santillana+del+Mar,+Cantabria/San+Vicente+de+la+Barquera,+Cantabria/Potes,+Cantabria/Pamplona/"
-                   target="_blank"
-                   class="inline-flex items-center px-6 py-3 bg-primary-light text-white rounded-lg hover:bg-primary-dark transition duration-300 shadow-medium text-lg">
-                   <span class="lucide icon-route"></span> Ver Ruta Sugerida
                 </a>
             </div>
         </section>
 
-        <section class="mb-10 p-6 md:p-8 bg-card rounded-lg shadow-subtle">
-            <h2 class="text-3xl font-semibold text-primary-dark mb-6 text-center"><span class="lucide icon-calendar-days text-primary-light"></span>Propuesta de Itinerario (6 Días)</h2>
-            <div class="space-y-6 text-gray-800">
-                <div class="p-4 border-l-4 border-primary-light bg-blue-50 rounded-r-lg">
-                    <p class="font-semibold text-lg text-primary">Día 1 (Dom 20 Abr): <span class="font-normal">Pamplona <span class="lucide icon-car text-sm"></span> Gaztelugatxe & Costa Oriental</span></p>
-                    <p class="text-sm mt-1">Salida (12:00h), visita Gaztelugatxe (¡reservar!), llegada y paseo por Castro/Laredo. Noche en Base 1.</p>
-                </div>
-                 <div class="p-4 border-l-4 border-secondary bg-orange-50 rounded-r-lg">
-                    <p class="font-semibold text-lg text-primary">Día 2 (Lun 21 Abr): <span class="font-normal">Costa Oriental <span class="lucide icon-car text-sm"></span> Cabárceno</span></p>
-                    <p class="text-sm mt-1">Mañana en Castro/Laredo, viaje a zona Santillana, tarde en Parque de Cabárceno. Noche en Base 2.</p>
-                </div>
-                <div class="p-4 border-l-4 border-accent bg-emerald-50 rounded-r-lg">
-                     <p class="font-semibold text-lg text-primary">Día 3 (Mar 22 Abr): <span class="font-normal">Santillana & San Vicente</span></p>
-                     <p class="text-sm mt-1">Visita a Santillana del Mar por la mañana y San Vicente de la Barquera por la tarde. Noche en Base 2.</p>
-                </div>
-                 <div class="p-4 border-l-4 border-gray-400 bg-gray-50 rounded-r-lg">
-                     <p class="font-semibold text-lg text-primary">Día 4 (Mié 23 Abr): <span class="font-normal">Traslado a Picos <span class="lucide icon-car text-sm"></span> Potes</span></p>
-                     <p class="text-sm mt-1">Viaje a Picos de Europa, check-in Base 3, tarde explorando Potes.</p>
-                </div>
-                 <div class="p-4 border-l-4 border-gray-500 bg-gray-100 rounded-r-lg">
-                     <p class="font-semibold text-lg text-primary">Día 5 (Jue 24 Abr): <span class="font-normal">Corazón de Picos de Europa</span></p>
-                     <p class="text-sm mt-1">Subida al Teleférico de Fuente Dé (opcional), ruta sencilla o disfrutar del paisaje. Noche en Base 3.</p>
-                </div>
-                 <div class="p-4 border-l-4 border-primary-dark bg-blue-100 rounded-r-lg">
-                     <p class="font-semibold text-lg text-primary">Día 6 (Vie 25 Abr): <span class="font-normal">Regreso a Pamplona <span class="lucide icon-car text-sm"></span></span></p>
-                     <p class="text-sm mt-1">Mañana tranquila y viaje de vuelta.</p>
-                </div>
-            </div>
-             <p class="text-sm text-gray-500 mt-6 text-center italic">Este itinerario es una propuesta flexible, ¡adaptadlo a vuestro gusto!</p>
+         <section class="mb-12">
+             <h2 class="text-4xl font-semibold text-text-dark mb-6 text-center">
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+                 Ruta General
+             </h2>
+             <a href="https://www.google.com/maps/dir/Pamplona/Laredo,+Cantabria/San+Juan+de+Gaztelugatxe,+Bermeo/Castro-Urdiales,+Cantabria/Parque+de+la+Naturaleza+de+Cab%C3%A1rceno,+Cab%C3%A1rceno/Santillana+del+Mar,+Cantabria/San+Vicente+de+la+Barquera,+Cantabria/Potes,+Cantabria/Pamplona/" target="_blank" rel="noopener noreferrer" class="block rounded-lg overflow-hidden shadow-lg border border-gray-200 hover:border-primary transition-colors duration-300">
+                 <img src="https://placehold.co/1200x400/e0e0e0/374151?text=Mapa+Ruta+(Clic+para+ver+en+Google+Maps)"
+                      alt="[Mapa de la ruta sugerida]"
+                      class="w-full h-auto object-cover"
+                      onerror="this.onerror=null; this.style.display='none';">
+             </a>
         </section>
 
-        <section class="mb-10 p-6 md:p-8 bg-card rounded-lg shadow-subtle">
-            <h2 class="text-3xl font-semibold text-primary-dark mb-6 text-center"><span class="lucide icon-bed text-primary-light"></span>Sugerencias de Alojamiento</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="border border-blue-200 p-5 rounded-lg bg-blue-50 text-center shadow-subtle destination-card">
-                    <h3 class="font-semibold text-xl text-primary-dark mb-2">Base 1: Costa Oriental</h3>
-                    <p class="text-sm text-gray-600 mb-2">Castro Urdiales, Laredo</p>
+        <section class="mb-12 p-8 bg-card rounded-lg shadow-md">
+            <h2 class="text-4xl font-semibold text-text-dark mb-8 text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
+                Propuesta de Itinerario
+            </h2>
+            <div class="space-y-6 text-text">
+                 <div class="p-5 border-l-4 border-primary rounded-r-md bg-slate-50">
+                    <p class="font-semibold text-xl text-text-dark">Día 1 (Dom 20 Abr): <span class="font-normal text-text">Pamplona <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-5 h-5 text-gray-500"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg> Gaztelugatxe & Costa Oriental</span></p>
+                    <p class="text-base mt-2 text-text-light">Salida (12:00h), visita <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 text-gray-500"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg> Gaztelugatxe (¡reservar!), llegada y paseo por Castro/Laredo. Noche en Base 1.</p>
+                </div>
+                 <div class="p-5 border-l-4 border-primary-light rounded-r-md bg-slate-50">
+                    <p class="font-semibold text-xl text-text-dark">Día 2 (Lun 21 Abr): <span class="font-normal text-text">Costa Oriental <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-5 h-5 text-gray-500"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg> Cabárceno</span></p>
+                    <p class="text-base mt-2 text-text-light">Mañana en Castro/Laredo, viaje a zona Santillana, tarde en <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 text-gray-500"><path d="M10 10.5A1.5 1.5 0 0 1 8.5 12 1.5 1.5 0 0 1 7 10.5V4a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v6.5Z"/><path d="M14 10.5A1.5 1.5 0 0 1 12.5 12 1.5 1.5 0 0 1 11 10.5V4a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v6.5Z"/><path d="M11 14h6a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h2"/></svg> Parque de Cabárceno. Noche en Base 2.</p>
+                </div>
+                <div class="p-5 border-l-4 border-primary rounded-r-md bg-slate-50">
+                     <p class="font-semibold text-xl text-text-dark">Día 3 (Mar 22 Abr): <span class="font-normal text-text">Santillana & San Vicente</span></p>
+                     <p class="text-base mt-2 text-text-light">Visita a <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 text-gray-500"><path d="M22 13v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8"/><path d="M19 16v-3a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v3"/><path d="M19 22v-6"/><path d="M14 22v-6"/><path d="M10 16H6v6h4v-6z"/><path d="M10 5.5V4a2 2 0 1 0-4 0v1.5"/><path d="m19 13 3-3 3 3"/><path d="m14 11 3-3 3 3"/></svg> Santillana del Mar por la mañana y <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 text-gray-500"><circle cx="12" cy="12" r="8"/><path d="M12 2v7.5"/><path d="m19.4 5-5.2 3.4"/><path d="M22 12h-7.5"/><path d="m19.4 19-5.2-3.4"/><path d="M12 22v-7.5"/><path d="m4.6 19 5.2-3.4"/><path d="M2 12h7.5"/><path d="m4.6 5 5.2 3.4"/><circle cx="12" cy="12" r="2"/></svg> San Vicente de la Barquera por la tarde. Noche en Base 2.</p>
+                </div>
+                 <div class="p-5 border-l-4 border-primary-light rounded-r-md bg-slate-50">
+                     <p class="font-semibold text-xl text-text-dark">Día 4 (Mié 23 Abr): <span class="font-normal text-text">Traslado a Picos <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-5 h-5 text-gray-500"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg> Potes</span></p>
+                     <p class="text-base mt-2 text-text-light">Viaje a Picos de Europa, check-in Base 3, tarde explorando Potes.</p>
+                </div>
+                 <div class="p-5 border-l-4 border-primary rounded-r-md bg-slate-50">
+                     <p class="font-semibold text-xl text-text-dark">Día 5 (Jue 24 Abr): <span class="font-normal text-text">Corazón de Picos de Europa</span></p>
+                     <p class="text-base mt-2 text-text-light">Subida al <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 text-gray-500"><path d="M10 3.12a7.3 7.3 0 0 0-7.3 7.3 7.3 7.3 0 0 0 7.3 7.3 7.3 7.3 0 0 0 7.3-7.3"/><path d="M10 10.42V21"/><path d="M16.46 16.46 21 21"/><path d="M3 10.42h7.58"/><path d="M16.46 4.38 21 8.86"/><path d="M10 3.12V8.86"/><path d="m10 8.86 4.44-4.44"/><path d="M10 10.42 5.56 14.8"/><path d="M14.44 14.8 10 10.42"/><path d="M3 10.42 5.56 5.5"/></svg> Teleférico de Fuente Dé (opcional), ruta sencilla o disfrutar del paisaje <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 text-gray-500"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/><path d="M4.14 15.08c2.62-1.57 5.24-1.43 7.86.42 2.74 1.94 5.49 2 8.23.16"/></svg>. Noche en Base 3.</p>
+                </div>
+                 <div class="p-5 border-l-4 border-primary-light rounded-r-md bg-slate-50">
+                     <p class="font-semibold text-xl text-text-dark">Día 6 (Vie 25 Abr): <span class="font-normal text-text">Regreso a Pamplona <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-5 h-5 text-gray-500"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg></span></p>
+                     <p class="text-base mt-2 text-text-light">Mañana tranquila y viaje de vuelta.</p>
+                </div>
+            </div>
+             <p class="text-sm text-text-light mt-8 text-center italic">Este itinerario es una propuesta flexible, ¡adaptadlo a vuestro gusto!</p>
+        </section>
+
+        <section class="mb-12 p-8 bg-card rounded-lg shadow-md">
+            <h2 class="text-4xl font-semibold text-text-dark mb-8 text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><path d="M2 4v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M2 10h20"/><path d="M10 16V6a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v10"/></svg>
+                Sugerencias de Alojamiento
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="border border-gray-200 p-6 rounded-lg bg-slate-50 text-center shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-3xl text-primary mb-3"><path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M12 6h.01"/><path d="M12 18h.01"/><path d="M16 6h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M16 18h.01"/><path d="M8 6h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/><path d="M8 18h.01"/></svg>
+                    <h3 class="font-semibold text-xl text-text-dark mb-2">Base 1: Costa Oriental</h3>
+                    <p class="text-sm text-text-light mb-3">Castro Urdiales, Laredo</p>
                     <p class="text-lg font-medium text-primary">1 Noche (Día 1)</p>
                 </div>
-                <div class="border border-orange-200 p-5 rounded-lg bg-orange-50 text-center shadow-subtle destination-card">
-                    <h3 class="font-semibold text-xl text-primary-dark mb-2">Base 2: Zona Central</h3>
-                    <p class="text-sm text-gray-600 mb-2">Santillana, Suances</p>
+                <div class="border border-gray-200 p-6 rounded-lg bg-slate-50 text-center shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-3xl text-primary mb-3"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
+                    <h3 class="font-semibold text-xl text-text-dark mb-2">Base 2: Zona Central</h3>
+                    <p class="text-sm text-text-light mb-3">Santillana, Suances</p>
                      <p class="text-lg font-medium text-primary">2 Noches (Días 2-3)</p>
                 </div>
-                <div class="border border-gray-300 p-5 rounded-lg bg-gray-100 text-center shadow-subtle destination-card">
-                    <h3 class="font-semibold text-xl text-primary-dark mb-2">Base 3: Picos de Europa</h3>
-                    <p class="text-sm text-gray-600 mb-2">Potes, Fuente Dé</p>
+                <div class="border border-gray-200 p-6 rounded-lg bg-slate-50 text-center shadow-sm hover:shadow-md transition-shadow duration-300">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-3xl text-primary mb-3"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    <h3 class="font-semibold text-xl text-text-dark mb-2">Base 3: Picos de Europa</h3>
+                    <p class="text-sm text-text-light mb-3">Potes, Fuente Dé</p>
                      <p class="text-lg font-medium text-primary">2 Noches (Días 4-5)</p>
                 </div>
             </div>
-            <p class="text-md text-gray-600 mt-6 text-center">Buscar: Apartamentos, posadas rurales, hoteles familiares.</p>
+            <p class="text-md text-text-light mt-8 text-center">Buscar: Apartamentos, posadas rurales, hoteles familiares.</p>
         </section>
 
-         <section class="p-6 md:p-8 bg-card rounded-lg shadow-subtle">
-            <h2 class="text-3xl font-semibold text-primary-dark mb-6 text-center"><span class="lucide icon-clipboard-list text-primary-light"></span>Notas y Tareas Pendientes</h2>
-            <textarea class="w-full h-32 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-light focus:border-transparent text-gray-700 bg-gray-50" placeholder="Añade aquí vuestras notas, ideas, listas de equipaje, reservas..."></textarea>
-            <ul class="list-disc list-inside text-gray-700 mt-6 space-y-2 pl-4">
-                <li><strong class="text-secondary">[Pendiente]</strong> Reservar entradas San Juan de Gaztelugatxe.</li>
-                <li><strong class="text-secondary">[Pendiente]</strong> Reservar entradas Cabárceno (online).</li>
-                <li><strong class="text-secondary">[Pendiente]</strong> Reservar alojamientos (Base 1, 2 y 3).</li>
-                <li><strong class="text-secondary">[Pendiente]</strong> Comprobar Teleférico Fuente Dé (horarios, estado).</li>
-                <li>Preparar ropa y calzado variado (¡capas!).</li>
-                <li>Revisar el coche (neumáticos, niveles).</li>
+         <section class="p-8 bg-card rounded-lg shadow-md">
+            <h2 class="text-4xl font-semibold text-text-dark mb-8 text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>
+                Notas y Tareas Pendientes
+            </h2>
+            <textarea class="w-full h-40 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-text bg-white mb-6" placeholder="Añade aquí vuestras notas, ideas, listas de equipaje, reservas..."></textarea>
+            <ul class="space-y-3 text-text">
+                <li class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-secondary mr-2 w-5 h-5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+                    <span class="text-secondary font-medium mr-1">[Pendiente]</span> Reservar entradas <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 mx-1 text-gray-500"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg> S. J. de Gaztelugatxe.
+                </li>
+                <li class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-secondary mr-2 w-5 h-5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+                    <span class="text-secondary font-medium mr-1">[Pendiente]</span> Reservar entradas <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 mx-1 text-gray-500"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg> Cabárceno (online).
+                </li>
+                 <li class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-secondary mr-2 w-5 h-5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+                    <span class="text-secondary font-medium mr-1">[Pendiente]</span> Reservar alojamientos (Base 1, 2 y 3).
+                </li>
+                 <li class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-secondary mr-2 w-5 h-5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
+                    <span class="text-secondary font-medium mr-1">[Pendiente]</span> Comprobar Teleférico Fuente Dé (horarios, estado).
+                </li>
+                <li class="flex items-center text-text-light line-through">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-green-500 mr-2 w-5 h-5"><path d="M20 6 9 17l-5-5"/></svg>
+                    Preparar ropa y calzado variado (¡capas!).
+                </li>
+                <li class="flex items-center text-text-light line-through">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-green-500 mr-2 w-5 h-5"><path d="M20 6 9 17l-5-5"/></svg>
+                    Revisar el coche (neumáticos, niveles).
+                </li>
             </ul>
         </section>
 
-        <footer class="text-center mt-10 pt-6 border-t border-gray-300">
-            <p class="text-lg font-semibold text-primary-dark">¡A disfrutar del viaje!</p>
-            <p class="text-sm text-gray-500 mt-1">Planificador v2</p>
-        </footer>
+        <footer class="text-center mt-12 pt-8 border-t border-gray-200">
+            <p class="text-lg font-semibold text-primary">¡Buen viaje, Familia Galarraga - Andreeva!</p>
+            <p class="text-xs text-text-light mt-2">Planificador v5</p> </footer>
 
     </div>
 
