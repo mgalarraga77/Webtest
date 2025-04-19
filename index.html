@@ -39,8 +39,6 @@
       }
       .map-svg-path { stroke-dasharray: 10, 5; animation: draw-map-path 10s linear infinite; }
       @keyframes draw-map-path { to { stroke-dashoffset: -1000; } }
-      /* Estilo para tabla del tiempo */
-      .weather-table th, .weather-table td { padding: 0.5rem 0.75rem; text-align: center; border: 1px solid #e5e7eb; }
 
     </style>
     <script>
@@ -67,36 +65,27 @@
             </p>
         </header>
 
-        <section class="mb-12 p-8 bg-card rounded-lg shadow-md">
-            <h2 class="text-3xl font-semibold text-text-dark mb-4 text-center">
+        <section class="mb-12 rounded-lg overflow-hidden shadow-lg">
+             <img src="https://lp-cms-production.imgix.net/2019-06/55251876.jpg?sharp=10&vib=20&w=1200"
+                  alt="Vista de la Ciudad de las Artes y las Ciencias, Valencia"
+                  class="w-full h-auto object-cover"
+                  onerror="this.onerror=null; this.src='https://placehold.co/1400x350/f97316/ffffff?text=Valencia+(Error)'; this.alt='Imagen de Valencia no disponible'">
+        </section>
+
+        <section class="mb-12 p-8 bg-card rounded-lg shadow-md text-center">
+            <h2 class="text-3xl font-semibold text-text-dark mb-4">
                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><path d="M22 10a3 3 0 0 0-3-3h-2.26a5.5 5.5 0 0 0-10.48 0H4a3 3 0 0 0 0 6h.74"/></svg>
-                Previsión del Tiempo (Orientativa)
+                El Tiempo en Valencia
             </h2>
-            <p class="text-center text-text-light mb-4">
-                La previsión detallada para Abril de 2025 no está disponible aún. Esto es una idea general.
-                <br>Consulta fuentes como <a href="https://www.aemet.es/es/eltiempo/prediccion/municipios/valencia-valencia-id46250" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">AEMET</a> más cerca de la fecha.
+            <p class="text-text-light mb-5">
+                -
+                <br>Consultar la previsión actualizada fácilmente:
             </p>
-            <div class="overflow-x-auto">
-                <table class="w-full border-collapse weather-table">
-                    <thead>
-                        <tr class="bg-slate-100">
-                            <th>Día</th>
-                            <th>Fecha</th>
-                            <th>Temp. Media (°C)</th>
-                            <th>Condición</th>
-                            <th>Lluvia Prob.</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Lunes</td><td>21 Abr</td><td>~15-22°</td><td>Soleado/Nubes</td><td>Baja</td></tr>
-                        <tr><td>Martes</td><td>22 Abr</td><td>~16-23°</td><td>Soleado</td><td>Baja</td></tr>
-                        <tr><td>Miércoles</td><td>23 Abr</td><td>~16-23°</td><td>Sol/Nubes</td><td>Media-Baja</td></tr>
-                        <tr><td>Jueves</td><td>24 Abr</td><td>~15-21°</td><td>Nubes/Sol</td><td>Media</td></tr>
-                        <tr><td>Viernes</td><td>25 Abr</td><td>~14-20°</td><td>Variable</td><td>Media</td></tr>
-                    </tbody>
-                </table>
-            </div>
-             <p class="text-xs text-text-light mt-2 text-center">Datos basados en históricos. La previsión real puede variar mucho.</p>
+            <a href="https://www.aemet.es/es/eltiempo/prediccion/municipios/valencia-valencia-id46250" target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition duration-300 shadow-md text-lg">
+                 Consultar Previsión en AEMET
+                 <svg class="external-link-icon inline-block ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            </a>
+             <p class="text-xs text-text-light mt-4">Temperaturas medias en Valencia a finales de Abril suelen rondar los 15-23°C.</p>
         </section>
 
         <section class="mb-12 p-8 bg-card rounded-lg shadow-md">
@@ -176,7 +165,6 @@
                  <svg viewBox="0 0 800 300" width="100%" height="auto" class="mx-auto">
                     <title>Mapa estilizado ruta Pamplona-Valencia - Clic para ver en Google Maps</title>
                     <rect width="100%" height="100%" fill="#f8fafc"/> <defs> <pattern id="grid-vlc" width="50" height="50" patternUnits="userSpaceOnUse"> <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#e5e7eb" stroke-width="0.5"/> </pattern> </defs> <rect width="100%" height="100%" fill="url(#grid-vlc)" opacity="0.5"/>
-                    {/* Simplified path Pamplona (top-left) to Valencia (bottom-right) */}
                     <path d="M 50 50 Q 200 100, 400 150 T 750 250" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="map-svg-path" />
                     <circle cx="50" cy="50" r="8" fill="#1d4ed8" stroke="#ffffff" stroke-width="2"> <title>Pamplona</title> </circle>
                     <circle cx="750" cy="250" r="8" fill="#1d4ed8" stroke="#ffffff" stroke-width="2"> <title>Valencia</title> </circle>
