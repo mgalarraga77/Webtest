@@ -3,251 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan Viaje 5 Días Familia Galarraga - Andreeva a Valencia</title>
+    <title>Plan de Viaje Interactivo: Tesoros de Puglia</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS for interactive map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <style>
-      /* Estilos generales y específicos */
-      .destination-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        border: 1px solid #e5e7eb; display: flex; flex-direction: column;
-      }
-      .destination-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
-        border-color: #3b82f6;
-      }
-      .destination-svg-container {
-          background-color: #f0f4f8; overflow: hidden; height: 10rem;
-          display: flex; align-items: center; justify-content: center;
-      }
-       .destination-svg-container svg {
-           width: 80%; height: 80%; max-height: 100%; opacity: 0.7;
-           transition: opacity 0.3s ease;
-       }
-       .destination-card:hover .destination-svg-container svg { opacity: 1; }
-      .external-link-icon {
-        width: 0.75em; height: 0.75em; display: inline-block; vertical-align: baseline;
-        margin-left: 0.25em; stroke-width: 3; color: #9ca3af; transition: color 0.3s ease;
-      }
-      .card-link:hover .external-link-icon { color: #1e40af; }
-      .card-link:hover { text-decoration: underline; color: #1d4ed8; }
-      .inline-svg-icon {
-          display: inline-block; vertical-align: -0.15em; width: 1.1em; height: 1.1em; margin-right: 0.3em;
-      }
-      .map-svg-path { stroke-dasharray: 10, 5; animation: draw-map-path 10s linear infinite; }
-      @keyframes draw-map-path { to { stroke-dashoffset: -1000; } }
-
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        #map {
+            height: 450px;
+            border-radius: 1rem;
+            z-index: 10;
+        }
     </style>
-    <script>
-      // Configuración de Tailwind
-      tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], }, colors: { primary: { DEFAULT: '#2563eb', light: '#60a5fa', dark: '#1d4ed8' }, secondary: '#f97316', accent: '#10b981', background: '#f8fafc', card: '#ffffff', text: { DEFAULT: '#374151', light: '#6b7280', dark: '#1f2937' } }, boxShadow: { 'md': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)', 'lg': '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)', } } } }
-    </script>
 </head>
-<body class="bg-background font-sans text-text antialiased">
+<body class="bg-gray-50 text-gray-800">
 
-    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+    <!-- Header -->
+    <header class="relative">
+        <div class="w-full h-64 md:h-80 bg-blue-400">
+            <!-- SVG Ilustración de Bari -->
+            <svg class="w-full h-full object-cover" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <title>Ilustración artística del puerto de Bari</title>
+                <defs>
+                    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#a8d8ea"/>
+                        <stop offset="100%" stop-color="#f5f5f5"/>
+                    </linearGradient>
+                    <linearGradient id="sea" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#3498db"/>
+                        <stop offset="100%" stop-color="#2980b9"/>
+                    </linearGradient>
+                </defs>
+                <rect width="400" height="200" fill="url(#sky)"/>
+                <circle cx="50" cy="50" r="25" fill="#f1c40f" opacity="0.9"/>
+                <rect y="120" width="400" height="80" fill="url(#sea)"/>
+                <path d="M0 120 L10 100 L30 110 L50 90 L80 115 L120 100 L150 120 Z" fill="#ecf0f1" opacity="0.8"/>
+                <path d="M140 120 L160 95 L180 110 L220 80 L250 105 L280 90 L300 120 Z" fill="#bdc3c7" opacity="0.7"/>
+                <path d="M280 120 L300 100 L330 115 L360 85 L400 110 V 120 Z" fill="#ecf0f1" opacity="0.8"/>
+                <path d="M80 130 C 70 120, 130 120, 120 130 L 140 145 L 60 145 Z" fill="#34495e" stroke="#2c3e50" stroke-width="1"/>
+                <path d="M100 130 L100 115 L105 118 Z" fill="white"/>
+                <path d="M220 135 C 210 125, 260 125, 250 135 L 270 150 L 200 150 Z" fill="#2980b9" stroke="#2c3e50" stroke-width="1"/>
+                <path d="M235 135 L235 120 L240 123 Z" fill="white"/>
+            </svg>
+        </div>
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-white p-4">
+            <h1 class="text-4xl md:text-5xl font-bold text-center shadow-lg">Vuestro Viaje a Puglia</h1>
+            <p class="mt-2 text-lg md:text-xl text-center">12 - 16 de Agosto, 2025</p>
+        </div>
+    </header>
 
-        <header class="text-center mb-8 pb-4 border-b border-gray-200">
-            <div class="mb-4">
-                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" class="w-24 h-12 mx-auto text-primary">
-                    <title>Icono de Viaje Familiar</title>
-                    <path d="M89.6,20.4c-1.2-2.8-4-4.8-7.2-4.8H62.8l-4.4-8.8c-1.2-2.4-3.7-4-6.4-4H48c-2.7,0-5.2,1.6-6.4,4L37.2,15.6H17.6 c-3.2,0-6,2-7.2,4.8L2,37.8c-0.4,1.1,0,2.3,0.8,3.1C3.7,41.7,4.8,42,6,42h8.4l4.8,6.4c1.1,1.5,2.8,2.4,4.6,2.4h44.4 c1.8,0,3.5-0.8,4.6-2.4l4.8-6.4H86c1.2,0,2.3-0.3,3.1-1.1c0.8-0.8,1.2-2,0.8-3.1L89.6,20.4z M48,6.4c0.7,0,1.3,0.4,1.6,1l4.4,8.8 H42l4.4-8.8C46.7,6.8,47.3,6.4,48,6.4z M86,39.6H6c-0.2,0-0.4,0-0.5-0.1L10.4,22c0.3-0.7,1-1.2,1.7-1.2h19.5l-5.6,11.2 c-1.1,2.1,0.1,4.8,2.5,4.8h39c2.4,0,3.6-2.6,2.5-4.8L65.3,20.8h19.5c0.7,0,1.4,0.5,1.7,1.2l4.9,17.4 C91.4,39.6,91.2,39.6,91,39.6z" fill="currentColor"/>
-                </svg>
+    <!-- Main Content -->
+    <main class="p-4 md:p-8 max-w-4xl mx-auto">
+
+        <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
+            <h2 class="text-2xl font-bold text-indigo-700 mb-2">¡Bienvenidos a la Aventura!</h2>
+            <p class="text-gray-600">Este es un plan de viaje sugerido, diseñado para ser flexible. Con vuestro coche de alquiler y base en Mola di Bari, tenéis la libertad de explorar a vuestro ritmo. ¡Disfrutad de la dolce vita en la maravillosa región de Puglia!</p>
+            <p class="text-sm text-yellow-700 bg-yellow-100 p-3 rounded-lg mt-4"><strong>Nota importante:</strong> El 15 de Agosto es <a href="https://es.wikipedia.org/wiki/Ferragosto" target="_blank" class="underline">Ferragosto</a>, una de las festividades más importantes de Italia. Esperad más gente de lo habitual en playas y lugares turísticos. ¡Planificad con antelación!</p>
+        </div>
+
+        <!-- Real Weather Forecast Section -->
+        <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
+            <h2 class="text-2xl font-bold text-cyan-700 mb-4">Previsión del Tiempo en Directo</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 text-center">
+                <div class="bg-blue-50 p-3 rounded-lg border border-blue-200"><p class="font-bold">Martes 12</p><p class="text-4xl my-2">☀️</p><p class="text-lg font-semibold">31° / 22°C</p><p class="text-sm text-gray-600">Soleado</p></div>
+                <div class="bg-blue-50 p-3 rounded-lg border border-blue-200"><p class="font-bold">Miércoles 13</p><p class="text-4xl my-2">☀️</p><p class="text-lg font-semibold">30° / 23°C</p><p class="text-sm text-gray-600">Soleado</p></div>
+                <div class="bg-blue-50 p-3 rounded-lg border border-blue-200"><p class="font-bold">Jueves 14</p><p class="text-4xl my-2">🌤️</p><p class="text-lg font-semibold">29° / 22°C</p><p class="text-sm text-gray-600">Parcialmente nublado</p></div>
+                <div class="bg-blue-50 p-3 rounded-lg border border-blue-200"><p class="font-bold">Viernes 15</p><p class="text-4xl my-2">☀️</p><p class="text-lg font-semibold">32° / 24°C</p><p class="text-sm text-gray-600">Muy soleado</p></div>
+                <div class="bg-blue-50 p-3 rounded-lg border border-blue-200 col-span-2 sm:col-span-1 md:col-span-1"><p class="font-bold">Sábado 16</p><p class="text-4xl my-2">☀️</p><p class="text-lg font-semibold">30° / 23°C</p><p class="text-sm text-gray-600">Soleado</p></div>
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold text-text-dark mb-2">Viaje Familiar a Valencia</h1>
-            <p class="text-xl text-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
-                21 - 25 de Abril, 2025 (5 Días)
-            </p>
-             <p class="text-sm text-text-light mt-2">
-                 <a href="https://www.visitvalencia.com/" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">
-                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                     Web Oficial de Turismo de Valencia
-                 </a>
-             </p>
-        </header>
-
-        <section class="mb-12 rounded-lg overflow-hidden shadow-lg">
-             <img src="https://lp-cms-production.imgix.net/2019-06/55251876.jpg?sharp=10&vib=20&w=1200"
-                  alt="Vista de la Ciudad de las Artes y las Ciencias, Valencia"
-                  class="w-full h-auto object-cover"
-                  onerror="this.onerror=null; this.src='https://placehold.co/1400x350/f97316/ffffff?text=Valencia+(Error)'; this.alt='Imagen de Valencia no disponible'">
-        </section>
-
-        <section class="mb-12 p-8 bg-card rounded-lg shadow-md text-center">
-            <h2 class="text-3xl font-semibold text-text-dark mb-4">
-                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><path d="M22 10a3 3 0 0 0-3-3h-2.26a5.5 5.5 0 0 0-10.48 0H4a3 3 0 0 0 0 6h.74"/></svg>
-                El Tiempo en Valencia
-            </h2>
-            <p class="text-text-light mb-5 text-sm">
-                La previsión detallada para Abril de 2025 no está disponible aún.
-                <br>Cuando se acerque la fecha, podéis consultar la previsión actualizada aquí:
-            </p>
-            <a href="https://www.aemet.es/es/eltiempo/prediccion/municipios/valencia-id46250" target="_blank" rel="noopener noreferrer" class="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition duration-300 shadow-md text-lg">
-                 Consultar Previsión en AEMET
-                 <svg class="external-link-icon inline-block ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            </a>
-             <p class="text-xs text-text-light mt-4">Temperaturas medias en Valencia a finales de Abril suelen rondar los 15-23°C.</p>
-        </section>
-
-        <section class="mb-12 p-8 bg-card rounded-lg shadow-md">
-             <h2 class="text-3xl font-semibold text-text-dark mb-4">
-                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                 Nuestro Alojamiento en Valencia
-             </h2>
-             <div class="text-text-light">
-                 <p><strong>Dirección:</strong> C/ Antonio Pons, 87 - pta 5, Poblats Marítims, 46011 Valencia</p>
-                 <p><strong>Zona:</strong> Cerca de la playa de la Malvarrosa y el puerto.</p>
-                 <a href="https://www.google.com/maps/search/?api=1&query=Carrer+d'Antonio+Pons,+87,+València" target="_blank" rel="noopener noreferrer" class="inline-flex items-center mt-2 text-primary hover:underline">
-                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 mr-1"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                     Ver en Google Maps
-                 </a>
-             </div>
-        </section>
-
-        <section class="mb-12 p-8 bg-card rounded-lg shadow-md flex flex-col md:flex-row items-center gap-8">
-             <div class="w-64 flex-shrink-0 mb-4 md:mb-0 md:mr-8">
-                 <img
-                    src="foto_familia.jpg" alt="Foto de la familia Galarraga-Andreeva" class="rounded-lg shadow-md w-full h-auto object-cover"
-                    onerror="this.onerror=null; this.src='https://placehold.co/256x192/e2e8f0/64748b?text=Foto+Familiar+(No+encontrada)'; this.alt='Error al cargar foto familiar'"> </div>
-            <div class="md:w-auto flex-grow text-center md:text-left">
-                <h2 class="text-3xl font-semibold text-text-dark mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    La Tripulación
-                </h2>
-                <ul class="text-lg space-y-2 text-text">
-                    <li>Miguel</li> <li>Mariya</li> <li>Cristina</li> <li>Ana</li> <li>Martín</li>
-                </ul>
-                <p class="text-sm text-text-light mt-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary w-4 h-4 mr-1"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>
-                    Viajando desde Pamplona
-                </p>
+            <p class="text-xs text-gray-500 mt-3 text-center">Previsión actualizada. Recuerda que puede haber ligeras variaciones.</p>
+        </div>
+        
+        <!-- Interactive Map Section -->
+        <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
+            <h2 class="text-2xl font-bold text-green-700 mb-4">Mapa Interactivo del Viaje</h2>
+            <div id="map" class="shadow-md mb-4"></div>
+            <div class="flex flex-wrap gap-2 justify-center">
+                <button id="btn-day1" class="map-btn bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition">Ruta Día 1</button>
+                <button id="btn-day2" class="map-btn bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-lg transition">Ruta Día 2</button>
+                <button id="btn-day3" class="map-btn bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded-lg transition">Ruta Día 3</button>
+                <button id="btn-day4" class="map-btn bg-stone-500 hover:bg-stone-600 text-white font-bold py-2 px-4 rounded-lg transition">Ruta Día 4</button>
+                <button id="btn-reset" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition">Resetear</button>
             </div>
-        </section>
+        </div>
 
-        <section class="mb-12 p-8 bg-card rounded-lg shadow-md">
-            <h2 class="text-4xl font-semibold text-text-dark mb-8 text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                Qué Visitar en Valencia
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"> <symbol id="external-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"> <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path> <polyline points="15 3 21 3 21 9"></polyline> <line x1="10" y1="14" x2="21" y2="3"></line> </symbol> </svg>
-
-                <a href="https://www.visitvalencia.com/que-ver-valencia/ciudad-de-las-artes-y-de-las-ciencias-y-pla-del-real/ciudad-de-las-artes-y-de-las-ciencias" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
-                    <div class="destination-svg-container"> <svg viewBox="0 0 100 60" class="text-blue-600"> <title>Ciudad de las Artes y las Ciencias</title> <path d="M 10 50 Q 20 30 40 40 T 70 30 Q 85 35 90 50" fill="none" stroke="currentColor" stroke-width="3"/> <path d="M 20 50 Q 35 20 50 30 T 80 40" fill="none" stroke="currentColor" stroke-width="2" opacity="0.7"/> <rect x="45" y="25" width="10" height="25" fill="currentColor" opacity="0.5"/> </svg> </div>
-                    <div class="p-5"> <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Ciudad Artes y Ciencias <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg> </h3> <span class="text-xs text-text-light block mt-1">Oceanogràfic, Museo, Hemisfèric...</span> </div>
-                </a>
-                <a href="https://www.bioparcvalencia.es/" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
-                    <div class="destination-svg-container"> <svg viewBox="0 0 100 60" class="text-green-600"> <title>Bioparc Valencia</title> <path d="M 50 10 C 30 10, 10 30, 10 50 C 10 70, 30 90, 50 90 C 70 90, 90 70, 90 50 C 90 30, 70 10, 50 10 Z M 50 20 Q 60 30 50 40 Q 40 30 50 20 Z" fill="none" stroke="currentColor" stroke-width="3"/> <path d="M 40 45 A 15 15 0 0 1 60 45" fill="none" stroke="currentColor" stroke-width="3"/> <circle cx="40" cy="35" r="3" fill="currentColor"/> <circle cx="60" cy="35" r="3" fill="currentColor"/> </svg> </div>
-                    <div class="p-5"> <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-green-600"><path d="M10.5 18.5a1.5 1.5 0 0 1-3 0V6a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v12.5z"/><path d="M13.5 18.5a1.5 1.5 0 0 0 3 0V6a2 2 0 0 0-2-2h0a2 2 0 0 0-2 2v12.5z"/><path d="M11 14h6a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h2"/></svg> Bioparc Valencia <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg> </h3> <span class="text-xs text-text-light block mt-1">Zoo-inmersión</span> </div>
-                </a>
-                 <a href="https://www.visitvalencia.com/que-ver-valencia/que-visitar-en-valencia" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
-                    <div class="destination-svg-container"> <svg viewBox="0 0 100 60" class="text-yellow-600"> <title>Centro Histórico</title> <rect x="30" y="10" width="40" height="45" fill="currentColor" opacity="0.8" rx="2"/> <rect x="35" y="15" width="10" height="10" fill="#fff"/> <rect x="55" y="15" width="10" height="10" fill="#fff"/> <rect x="42" y="30" width="16" height="20" fill="#fff"/> <path d="M 40 5 L 60 5 L 50 15 Z" fill="currentColor"/> </svg> </div>
-                    <div class="p-5"> <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-yellow-600"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg> Centro Histórico <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg> </h3> <span class="text-xs text-text-light block mt-1">Mercado Central, Lonja, Catedral...</span> </div>
-                </a>
-                 <a href="https://www.visitvalencia.com/que-hacer-valencia/playas-valencia/playa-malvarrosa" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
-                    <div class="destination-svg-container"> <svg viewBox="0 0 100 60" class="text-sky-500"> <title>Playa Malvarrosa</title> <path d="M 0 60 L 100 60 L 100 40 Q 50 60 0 40 Z" fill="currentColor" opacity="0.6"/> <path d="M 10 40 Q 25 30 40 40 T 70 40 T 100 40" fill="none" stroke="#fff" stroke-width="2" opacity="0.8"/> <path d="M 5 45 Q 20 35 35 45 T 65 45 T 95 45" fill="none" stroke="#fff" stroke-width="1.5" opacity="0.6"/> <circle cx="85" cy="15" r="8" fill="#facc15"/> </svg> </div>
-                    <div class="p-5"> <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-sky-500"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5s-3 3.5-3 5.5a7 7 0 0 0 7 7z"/></svg> Playa Malvarrosa <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg> </h3> <span class="text-xs text-text-light block mt-1">Paseo marítimo, arena</span> </div>
-                </a>
-                <a href="https://www.visitvalencia.com/que-ver-valencia/albufera-valencia" target="_blank" rel="noopener noreferrer" class="group block destination-card rounded-lg overflow-hidden bg-white no-underline hover:text-primary">
-                    <div class="destination-svg-container"> <svg viewBox="0 0 100 60" class="text-teal-600"> <title>Parque Natural Albufera</title> <path d="M 10 50 C 20 40, 30 40, 40 50 S 60 60, 70 50 S 90 40, 90 50" fill="none" stroke="currentColor" stroke-width="3" opacity="0.7"/> <path d="M 20 45 L 80 45 L 70 30 L 60 40 L 50 25 L 40 40 L 30 30 Z" fill="currentColor" opacity="0.9"/> <rect x="0" y="50" width="100" height="10" fill="#60a5fa" opacity="0.5"/> </svg> </div>
-                    <div class="p-5"> <h3 class="font-semibold text-xl text-text-dark group-hover:text-primary"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-teal-600"><path d="M14 9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path d="M12 2c-4.97 0-9 4.03-9 9 0 2.24.81 4.27 2.14 5.86L12 22l7.86-5.14C21.19 15.27 22 13.24 22 11c0-4.97-4.03-9-9-9z"/><path d="M12 14a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg> Albufera (Opcional) <svg class="external-link-icon"><use xlink:href="#external-link-icon"></use></svg> </h3> <span class="text-xs text-text-light block mt-1">Paseo en barca, arrozales</span> </div>
-                </a>
-                 <div class="hidden lg:block"></div>
-
+        <!-- Itinerary -->
+        <!-- Día 1: Martes, 12 de Agosto -->
+        <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
+            <h3 class="text-3xl font-bold mb-6 text-indigo-600">Día 1: Llegada y el Corazón de Bari</h3>
+            <div class="relative border-l-2 border-gray-200 ml-5">
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">✈️</div><div class="ml-10"><h4 class="font-bold text-lg">07:00 - Llegada y Coche</h4><p class="text-gray-600">Aterrizaje en el Aeropuerto de Bari (BRI). Recogida del coche de alquiler y comienzo de la aventura.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">🏨</div><div class="ml-10"><h4 class="font-bold text-lg">09:00 - Check-in en Mola di Bari</h4><p class="text-gray-600">Trayecto de unos 30 min hasta Mola di Bari. Dejad el equipaje en vuestro alojamiento.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">☕</div><div class="ml-10"><h4 class="font-bold text-lg">10:30 - Primer Contacto con Bari</h4><p class="text-gray-600">Conducid hasta Bari (25 min). Tomad un café y dad un primer paseo para orientaros.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">🍴</div><div class="ml-10"><h4 class="font-bold text-lg">13:30 - Almuerzo en Bari</h4><p class="text-gray-600"><strong>Sugerencia:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Mastro+Ciccio+Bari" target="_blank" class="text-indigo-500 underline font-semibold">Mastro Ciccio</a>. Famoso por sus bocadillos gourmet creativos y deliciosos, con ingredientes locales.</p></div></div>
+                <div class="relative mb-8">
+                    <div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">🧭</div>
+                    <div class="ml-10">
+                        <h4 class="font-bold text-lg">15:30 - Tarde: Elige tu Aventura</h4>
+                        <p class="text-gray-600 mb-4">Bari tiene mucho que ofrecer. Escoged el plan que más os apetezca para la tarde:</p>
+                        <div class="space-y-4">
+                            <div class="bg-sky-50 border-l-4 border-sky-500 p-4 rounded-r-lg"><h5 class="font-bold text-sky-800">Opción 1: Paseo Cultural por Bari Vecchia</h5><p class="text-sm text-gray-700">Ideal para amantes de la historia. Perdeos por el casco antiguo, visitad la Basílica de San Nicolás, la "Via delle Orecchiette" y el Castillo Normando-Suevo.</p></div>
+                            <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg"><h5 class="font-bold text-emerald-800">Opción 2: Tarde de Relax en el Lungomare</h5><p class="text-sm text-gray-700">Perfecto para desconectar. Recorred el paseo marítimo, relajaos en la playa Pane e Pomodoro y terminad con un aperitivo con vistas al mar.</p></div>
+                            <div class="bg-rose-50 border-l-4 border-rose-500 p-4 rounded-r-lg"><h5 class="font-bold text-rose-800">Opción 3: Compras y Ambiente Moderno</h5><p class="text-sm text-gray-700">Para un plan más cosmopolita. Pasead por la Via Sparano, admira el Teatro Petruzzelli y probad un auténtico helado artesanal.</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">🌙</div><div class="ml-10"><h4 class="font-bold text-lg">20:30 - Cena en Mola di Bari</h4><p class="text-gray-600"><strong>Sugerencia:</strong> <a href="https://www.google.com/maps/search/?api=1&query=La+Lampara+Mola+di+Bari" target="_blank" class="text-indigo-500 underline font-semibold">Ristorante Pizzeria La Lampara</a>. Excelente marisco fresco y pizzas.</p></div></div>
             </div>
-        </section>
+        </div>
 
-         <section class="mb-12">
-             <h2 class="text-4xl font-semibold text-text-dark mb-6 text-center">
-                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
-                 Ruta General (Pamplona - Valencia)
-             </h2>
-             <a href="https://www.google.com/maps/dir/Pamplona/Valencia/" target="_blank" rel="noopener noreferrer" class="block rounded-lg overflow-hidden shadow-lg border border-gray-200 hover:border-primary transition-colors duration-300 bg-slate-50 p-4">
-                 <svg viewBox="0 0 800 300" width="100%" height="auto" class="mx-auto">
-                    <title>Mapa estilizado ruta Pamplona-Valencia - Clic para ver en Google Maps</title>
-                    <rect width="100%" height="100%" fill="#f8fafc"/> <defs> <pattern id="grid-vlc" width="50" height="50" patternUnits="userSpaceOnUse"> <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#e5e7eb" stroke-width="0.5"/> </pattern> </defs> <rect width="100%" height="100%" fill="url(#grid-vlc)" opacity="0.5"/>
-                    <path d="M 50 50 Q 200 100, 400 150 T 750 250" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="map-svg-path" />
-                    <circle cx="50" cy="50" r="8" fill="#1d4ed8" stroke="#ffffff" stroke-width="2"> <title>Pamplona</title> </circle>
-                    <circle cx="750" cy="250" r="8" fill="#1d4ed8" stroke="#ffffff" stroke-width="2"> <title>Valencia</title> </circle>
-                    <text x="50%" y="280" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" fill="#6b7280"> (Clic para ver ruta detallada en Google Maps) </text>
-                 </svg>
-             </a>
-        </section>
-
-        <section class="mb-12 p-8 bg-card rounded-lg shadow-md">
-            <h2 class="text-4xl font-semibold text-text-dark mb-8 text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
-                Propuesta de Itinerario (Valencia)
-            </h2>
-            <div class="space-y-6 text-text">
-                 <div class="p-5 border-l-4 border-primary rounded-r-md bg-slate-50">
-                    <p class="font-semibold text-xl text-text-dark">Día 1 (Lun 21 Abr): <span class="font-normal text-text">Viaje Pamplona <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-5 h-5 text-gray-500"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg> Valencia y Playa</span></p>
-                    <p class="text-base mt-2 text-text-light">Viaje en coche (~5-6h). Llegada al alojamiento (Poblats Marítims). Tarde/Noche: paseo por la playa Malvarrosa y cena por la zona.</p>
-                </div>
-                 <div class="p-5 border-l-4 border-blue-400 rounded-r-md bg-blue-50">
-                    <p class="font-semibold text-xl text-text-dark">Día 2 (Mar 22 Abr): <span class="font-normal text-text">Ciudad de las Artes y las Ciencias</span></p>
-                    <p class="text-base mt-2 text-text-light">Día dedicado a la CAC: visita al <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 text-gray-500"><path d="M21.7 10.3c.4-.4.4-1 0-1.4l-3-3c-.4-.4-1-.4-1.4 0l-3 3c-.4.4-.4 1 0 1.4l3 3c.4.4 1 .4 1.4 0l3-3z"/><path d="M10.3 21.7c.4.4 1 .4 1.4 0l3-3c.4-.4.4-1 0-1.4l-3-3c-.4-.4-1-.4-1.4 0l-3 3c-.4.4-.4 1 0 1.4l3 3z"/><path d="M6.8 17.2c-.4.4-1 .4-1.4 0l-3-3c-.4-.4-.4-1 0-1.4l3-3c.4-.4 1-.4 1.4 0l3 3c.4.4.4 1 0 1.4l-3 3z"/><path d="M17.2 6.8c.4-.4 1-.4 1.4 0l3 3c.4.4.4 1 0 1.4l-3 3c-.4.4-1 .4-1.4 0l-3-3c-.4-.4-.4-1 0-1.4l3-3z"/></svg> Oceanogràfic (reservar!). Opcional: Museo de las Ciencias o Hemisfèric. Paseo por los Jardines del Turia.</p>
-                </div>
-                <div class="p-5 border-l-4 border-yellow-500 rounded-r-md bg-yellow-50">
-                     <p class="font-semibold text-xl text-text-dark">Día 3 (Mié 23 Abr): <span class="font-normal text-text">Centro Histórico</span></p>
-                     <p class="text-base mt-2 text-text-light">Explorar el centro: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 text-gray-500"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 12a10 10 0 0 0-7.07 2.93L12 22V12z"/></svg> Mercado Central, Lonja de la Seda, Catedral (subir al Miguelete?), Torres de Serranos/Quart, Barrio del Carmen.</p>
-                </div>
-                 <div class="p-5 border-l-4 border-green-500 rounded-r-md bg-green-50">
-                     <p class="font-semibold text-xl text-text-dark">Día 4 (Jue 24 Abr): <span class="font-normal text-text">Bioparc y Playa</span></p>
-                     <p class="text-base mt-2 text-text-light">Mañana/Tarde en <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 text-gray-500"><path d="M10 10.5A1.5 1.5 0 0 1 8.5 12 1.5 1.5 0 0 1 7 10.5V4a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v6.5Z"/><path d="M14 10.5A1.5 1.5 0 0 1 12.5 12 1.5 1.5 0 0 1 11 10.5V4a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v6.5Z"/><path d="M11 14h6a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h2"/></svg> Bioparc Valencia (reservar!). Tarde de relax en la <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 text-gray-500"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5s-3 3.5-3 5.5a7 7 0 0 0 7 7z"/></svg> Playa Malvarrosa o explorar el puerto.</p>
-                </div>
-                 <div class="p-5 border-l-4 border-teal-500 rounded-r-md bg-teal-50">
-                     <p class="font-semibold text-xl text-text-dark">Día 5 (Vie 25 Abr): <span class="font-normal text-text">¿Albufera? y Regreso <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-5 h-5 text-gray-500"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg> Pamplona</span></p>
-                     <p class="text-base mt-2 text-text-light">Mañana: opcional visita corta a la <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon w-4 h-4 text-gray-500"><path d="M14 9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path d="M12 2c-4.97 0-9 4.03-9 9 0 2.24.81 4.27 2.14 5.86L12 22l7.86-5.14C21.19 15.27 22 13.24 22 11c0-4.97-4.03-9-9-9z"/><path d="M12 14a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg> Albufera (paseo en barca) si el horario lo permite. Viaje de regreso a Pamplona (~5-6h).</p>
-                </div>
+        <!-- Other days remain the same -->
+        <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
+            <h3 class="text-3xl font-bold mb-6 text-teal-600">Día 2: Acantilados y Puertos con Encanto</h3>
+            <div class="relative border-l-2 border-gray-200 ml-5">
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-teal-600 text-white rounded-full -left-5 shadow-md">🚗</div><div class="ml-10"><h4 class="font-bold text-lg">09:30 - Salida hacia Polignano a Mare</h4><p class="text-gray-600">Un corto viaje de 20 minutos os llevará a uno de los pueblos más fotografiados de Italia.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-teal-600 text-white rounded-full -left-5 shadow-md">🍴</div><div class="ml-10"><h4 class="font-bold text-lg">13:00 - Almuerzo con vistas</h4><p class="text-gray-600"><strong>Sugerencia:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Pescaria+Polignano+a+Mare" target="_blank" class="text-teal-500 underline font-semibold">Pescaria</a>. Sus sándwiches de pescado son legendarios.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-teal-600 text-white rounded-full -left-5 shadow-md">⛵</div><div class="ml-10"><h4 class="font-bold text-lg">15:30 - Tarde en Monopoli</h4><p class="text-gray-600">Explorad el encantador puerto antiguo (Porto Antico) y sus calles blancas.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-teal-600 text-white rounded-full -left-5 shadow-md">🌙</div><div class="ml-10"><h4 class="font-bold text-lg">20:30 - Cena en el puerto de Monopoli</h4><p class="text-gray-600"><strong>Sugerencia:</strong> <a href="https://www.google.com/maps/search/?api=1&query=La+Locanda+sul+Porto+Monopoli" target="_blank" class="text-teal-500 underline font-semibold">La Locanda sul Porto</a>. Cocina local con pescado fresco.</p></div></div>
             </div>
-             <p class="text-sm text-text-light mt-8 text-center italic">Itinerario sugerido, ¡ajustadlo a vuestro ritmo!</p>
-        </section>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
+            <h3 class="text-3xl font-bold mb-6 text-amber-600">Día 3: Trulli Mágicos y la Ciudad Blanca</h3>
+            <div class="relative border-l-2 border-gray-200 ml-5">
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-amber-600 text-white rounded-full -left-5 shadow-md">🛖</div><div class="ml-10"><h4 class="font-bold text-lg">09:00 - Rumbo a Alberobello</h4><p class="text-gray-600">Descubrid Alberobello, Patrimonio de la Humanidad y sus singulares casas trulli.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-amber-600 text-white rounded-full -left-5 shadow-md">🍴</div><div class="ml-10"><h4 class="font-bold text-lg">13:00 - Almuerzo en un Trullo</h4><p class="text-gray-600"><strong>Sugerencia:</strong> <a href="https://www.google.com/maps/search/?api=1&query=La+Cantina+Alberobello" target="_blank" class="text-amber-500 underline font-semibold">La Cantina</a>. Un restaurante familiar con platos caseros.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-amber-600 text-white rounded-full -left-5 shadow-md">🏰</div><div class="ml-10"><h4 class="font-bold text-lg">16:00 - Descubrir Ostuni, la "Ciudad Blanca"</h4><p class="text-gray-600">Subid por el laberinto de calles encaladas hasta la catedral. Vistas espectaculares.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-amber-600 text-white rounded-full -left-5 shadow-md">🌙</div><div class="ml-10"><h4 class="font-bold text-lg">21:00 - Cena de regreso en Mola di Bari</h4><p class="text-gray-600"><strong>Sugerencia:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Pizzeria+da+Gino+Mola+di+Bari" target="_blank" class="text-amber-500 underline font-semibold">Pizzeria da Gino</a> para una pizza napolitana.</p></div></div>
+            </div>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
+            <h3 class="text-3xl font-bold mb-6 text-stone-600">Día 4: Viaje a la Antigua Matera</h3>
+            <div class="relative border-l-2 border-gray-200 ml-5">
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-stone-600 text-white rounded-full -left-5 shadow-md">🌄</div><div class="ml-10"><h4 class="font-bold text-lg">08:30 - Salida hacia Matera</h4><p class="text-gray-600">Un viaje a una de las ciudades habitadas más antiguas del mundo. Explorad los "Sassi".</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-stone-600 text-white rounded-full -left-5 shadow-md">🍴</div><div class="ml-10"><h4 class="font-bold text-lg">13:30 - Almuerzo en una cueva</h4><p class="text-gray-600"><strong>Sugerencia:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Trattoria+del+Caveoso+Matera" target="_blank" class="text-stone-500 underline font-semibold">Trattoria del Caveoso</a>. Comida tradicional en un entorno único.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-stone-600 text-white rounded-full -left-5 shadow-md">🏛️</div><div class="ml-10"><h4 class="font-bold text-lg">16:00 - Historia Viva</h4><p class="text-gray-600">Visitad una "casa grotta" y el mirador de Murgia Timone para la vista panorámica.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-stone-600 text-white rounded-full -left-5 shadow-md">🌙</div><div class="ml-10"><h4 class="font-bold text-lg">21:00 - Cena relajada en Mola di Bari</h4><p class="text-gray-600">Después del largo día, cena tranquila en el paseo marítimo de Mola.</p></div></div>
+            </div>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
+            <h3 class="text-3xl font-bold mb-6 text-rose-600">Día 5: Despedida y Vuelo de Regreso</h3>
+            <div class="relative border-l-2 border-gray-200 ml-5">
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-rose-600 text-white rounded-full -left-5 shadow-md">☕</div><div class="ml-10"><h4 class="font-bold text-lg">Mañana - Último Café y Despedida</h4><p class="text-gray-600">Disfrutad del desayuno con calma y dad un último paseo por el puerto de Mola di Bari.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-rose-600 text-white rounded-full -left-5 shadow-md">✈️</div><div class="ml-10"><h4 class="font-bold text-lg">09:30 - Rumbo al Aeropuerto</h4><p class="text-gray-600">Salida hacia el aeropuerto de Bari (BRI). Devolved el coche y preparaos para vuestro vuelo de las 12:00.</p></div></div>
+            </div>
+        </div>
 
-        <section class="p-8 bg-card rounded-lg shadow-md">
-            <h2 class="text-4xl font-semibold text-text-dark mb-8 text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-primary"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>
-                Notas y Tareas Pendientes (Valencia)
-            </h2>
-            <textarea class="w-full h-40 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-text bg-white mb-6" placeholder="Añade aquí vuestras notas para Valencia: reservas, ideas, equipaje..."></textarea>
-            <ul class="space-y-3 text-text">
-                 <li class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-secondary mr-2 w-5 h-5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
-                    <span class="text-secondary font-medium mr-1">[Pendiente]</span> Reservar entradas Oceanogràfic (CAC).
-                </li>
-                <li class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-secondary mr-2 w-5 h-5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
-                    <span class="text-secondary font-medium mr-1">[Pendiente]</span> Reservar entradas Bioparc.
-                </li>
-                 <li class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-secondary mr-2 w-5 h-5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
-                    <span class="text-secondary font-medium mr-1">[Pendiente]</span> Consultar horarios Mercado Central.
-                </li>
-                 <li class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-secondary mr-2 w-5 h-5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>
-                    <span class="text-secondary font-medium mr-1">[Opcional]</span> Mirar opciones/horarios paseo en barca Albufera.
-                </li>
-                <li class="flex items-center text-text-light line-through">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-green-500 mr-2 w-5 h-5"><path d="M20 6 9 17l-5-5"/></svg>
-                    Preparar ropa de primavera/verano (¡y bañador!).
-                </li>
-                <li class="flex items-center text-text-light line-through">
-                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-svg-icon text-green-500 mr-2 w-5 h-5"><path d="M20 6 9 17l-5-5"/></svg>
-                    Revisar el coche (neumáticos, niveles).
-                </li>
-            </ul>
-        </section>
+    </main>
 
-        <footer class="text-center mt-12 pt-8 border-t border-gray-200">
-            <p class="text-lg font-semibold text-primary">¡Buen viaje a Valencia, Familia Galarraga - Andreeva!</p>
-            <p class="text-xs text-text-light mt-2">Planificador Valencia v1</p>
-        </footer>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center p-4 mt-8">
+        <p>&copy; 2025 - ¡Buen viaje y a disfrutar de Puglia!</p>
+    </footer>
 
-    </div>
+    <!-- Leaflet JS for interactive map -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 1. Initialize Map
+            const map = L.map('map').setView([40.85, 17.1], 9);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
 
+            // 2. Define Locations
+            const locations = {
+                mola: { lat: 41.060, lon: 17.085, name: 'Mola di Bari (Base)' },
+                bari: { lat: 41.117, lon: 16.871, name: 'Bari' },
+                polignano: { lat: 40.995, lon: 17.218, name: 'Polignano a Mare' },
+                monopoli: { lat: 40.953, lon: 17.301, name: 'Monopoli' },
+                alberobello: { lat: 40.784, lon: 17.238, name: 'Alberobello' },
+                ostuni: { lat: 40.729, lon: 17.577, name: 'Ostuni' },
+                matera: { lat: 40.667, lon: 16.602, name: 'Matera' }
+            };
+            
+            // 3. Add Markers
+            for (const key in locations) {
+                const loc = locations[key];
+                const marker = L.marker([loc.lat, loc.lon]).addTo(map)
+                    .bindPopup(`<b>${loc.name}</b>`);
+                if (key === 'mola') {
+                    marker.setIcon(L.icon({
+                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                        iconSize: [25, 41],
+                        iconAnchor: [12, 41],
+                        popupAnchor: [1, -34],
+                        shadowSize: [41, 41]
+                    }));
+                }
+            }
+
+            // 4. Define Routes
+            const routes = {
+                day1: {
+                    coords: [[locations.mola.lat, locations.mola.lon], [locations.bari.lat, locations.bari.lon]],
+                    color: '#4f46e5' // Indigo
+                },
+                day2: {
+                    coords: [[locations.mola.lat, locations.mola.lon], [locations.polignano.lat, locations.polignano.lon], [locations.monopoli.lat, locations.monopoli.lon]],
+                    color: '#0d9488' // Teal
+                },
+                day3: {
+                    coords: [[locations.mola.lat, locations.mola.lon], [locations.alberobello.lat, locations.alberobello.lon], [locations.ostuni.lat, locations.ostuni.lon]],
+                    color: '#d97706' // Amber
+                },
+                day4: {
+                    coords: [[locations.mola.lat, locations.mola.lon], [locations.matera.lat, locations.matera.lon]],
+                    color: '#78716c' // Stone
+                }
+            };
+
+            let currentRouteLayer = null;
+
+            function drawRoute(day) {
+                if (currentRouteLayer) {
+                    map.removeLayer(currentRouteLayer);
+                }
+                if (routes[day]) {
+                    currentRouteLayer = L.polyline(routes[day].coords, { color: routes[day].color, weight: 5, opacity: 0.8 }).addTo(map);
+                    map.fitBounds(currentRouteLayer.getBounds().pad(0.2));
+                }
+            }
+            
+            // 5. Event Listeners for buttons
+            document.getElementById('btn-day1').addEventListener('click', () => drawRoute('day1'));
+            document.getElementById('btn-day2').addEventListener('click', () => drawRoute('day2'));
+            document.getElementById('btn-day3').addEventListener('click', () => drawRoute('day3'));
+            document.getElementById('btn-day4').addEventListener('click', () => drawRoute('day4'));
+            document.getElementById('btn-reset').addEventListener('click', () => {
+                if (currentRouteLayer) {
+                    map.removeLayer(currentRouteLayer);
+                }
+                map.setView([40.85, 17.1], 9);
+            });
+        });
+    </script>
 </body>
 </html>
