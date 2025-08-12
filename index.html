@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan de Viaje Interactivo: Tesoros de Puglia</title>
+    <title>Plan de Viaje Estratégico: Tesoros de Puglia</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,23 +62,29 @@
 
         <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
             <h2 class="text-2xl font-bold text-indigo-700 mb-2">¡Bienvenidos a la Aventura!</h2>
-            <p class="text-gray-600">Este es un plan de viaje sugerido, diseñado para ser flexible. Con vuestro coche de alquiler y base en Mola di Bari, tenéis la libertad de explorar a vuestro ritmo. ¡Disfrutad de la dolce vita en la maravillosa región de Puglia!</p>
-            <p class="text-sm text-yellow-700 bg-yellow-100 p-3 rounded-lg mt-4"><strong>Nota importante:</strong> El 15 de Agosto es <a href="https://es.wikipedia.org/wiki/Ferragosto" target="_blank" class="underline">Ferragosto</a>, una de las festividades más importantes de Italia. Esperad más gente de lo habitual en playas y lugares turísticos. ¡Planificad con antelación!</p>
+            <p class="text-gray-600">Este es un plan de viaje sugerido, diseñado para ser flexible y centrado en vuestro amor por el mar y los pueblos con encanto. Con vuestro coche de alquiler y base en Mola di Bari, tenéis la libertad de explorar a vuestro ritmo. ¡Disfrutad de la dolce vita en la maravillosa costa de Puglia!</p>
         </div>
 
-        <!-- Real Weather Forecast Section -->
-        <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
-            <h2 class="text-2xl font-bold text-cyan-700 mb-4">Previsión del Tiempo en Directo</h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 text-center">
-                <div class="bg-blue-50 p-3 rounded-lg border border-blue-200"><p class="font-bold">Martes 12</p><p class="text-4xl my-2">☀️</p><p class="text-lg font-semibold">31° / 22°C</p><p class="text-sm text-gray-600">Soleado</p></div>
-                <div class="bg-blue-50 p-3 rounded-lg border border-blue-200"><p class="font-bold">Miércoles 13</p><p class="text-4xl my-2">☀️</p><p class="text-lg font-semibold">30° / 23°C</p><p class="text-sm text-gray-600">Soleado</p></div>
-                <div class="bg-blue-50 p-3 rounded-lg border border-blue-200"><p class="font-bold">Jueves 14</p><p class="text-4xl my-2">🌤️</p><p class="text-lg font-semibold">29° / 22°C</p><p class="text-sm text-gray-600">Parcialmente nublado</p></div>
-                <div class="bg-blue-50 p-3 rounded-lg border border-blue-200"><p class="font-bold">Viernes 15</p><p class="text-4xl my-2">☀️</p><p class="text-lg font-semibold">32° / 24°C</p><p class="text-sm text-gray-600">Muy soleado</p></div>
-                <div class="bg-blue-50 p-3 rounded-lg border border-blue-200 col-span-2 sm:col-span-1 md:col-span-1"><p class="font-bold">Sábado 16</p><p class="text-4xl my-2">☀️</p><p class="text-lg font-semibold">30° / 23°C</p><p class="text-sm text-gray-600">Soleado</p></div>
+        <!-- Car Rental Info -->
+        <div class="bg-white p-6 rounded-2xl shadow-lg mb-8 border-l-4 border-blue-500">
+            <h2 class="text-2xl font-bold text-blue-700 mb-4">Datos de tu Reserva de Coche</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
+                <div>
+                    <p><strong>Compañía:</strong> AUTOVIA</p>
+                    <p><strong>Coche:</strong> Fiat 500 o similar</p>
+                    <p><strong>Código Reserva:</strong> AUT-25150737</p>
+                </div>
+                <div>
+                    <p><strong>Recogida:</strong> 12/08/2025 - 07:00</p>
+                    <p><strong>Devolución:</strong> 16/08/2025 - 14:00</p>
+                    <p><strong>Ubicación:</strong> Aeropuerto de Bari (BRI)</p>
+                </div>
             </div>
-            <p class="text-xs text-gray-500 mt-3 text-center">Previsión actualizada. Recuerda que puede haber ligeras variaciones.</p>
+            <div class="text-sm text-yellow-700 bg-yellow-100 p-3 rounded-lg mt-4">
+                <p><strong>¡Importante!</strong> No olvides llevar el DNI/Pasaporte, carnet de conducir y una <strong>tarjeta de crédito</strong> a nombre de Miguel Galarraga Irujo para el depósito de la fianza.</p>
+            </div>
         </div>
-        
+
         <!-- Interactive Map Section -->
         <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
             <h2 class="text-2xl font-bold text-green-700 mb-4">Mapa Interactivo del Viaje</h2>
@@ -86,8 +92,8 @@
             <div class="flex flex-wrap gap-2 justify-center">
                 <button id="btn-day1" class="map-btn bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition">Ruta Día 1</button>
                 <button id="btn-day2" class="map-btn bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-lg transition">Ruta Día 2</button>
-                <button id="btn-day3" class="map-btn bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded-lg transition">Ruta Día 3</button>
-                <button id="btn-day4" class="map-btn bg-stone-500 hover:bg-stone-600 text-white font-bold py-2 px-4 rounded-lg transition">Ruta Día 4</button>
+                <button id="btn-day3" class="map-btn bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg transition">Ruta Día 3 (Jueves)</button>
+                <button id="btn-day4" class="map-btn bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded-lg transition">Ruta Día 4 (Ferragosto)</button>
                 <button id="btn-reset" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition">Resetear</button>
             </div>
         </div>
@@ -95,153 +101,94 @@
         <!-- Itinerary -->
         <!-- Día 1: Martes, 12 de Agosto -->
         <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
-            <h3 class="text-3xl font-bold mb-6 text-indigo-600">Día 1: Llegada y el Corazón de Bari</h3>
+            <h3 class="text-3xl font-bold mb-6 text-indigo-600">Día 1: Llegada y Día Completo en Bari</h3>
+            <svg class="w-full h-auto object-cover rounded-xl mb-8 shadow-md" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                <title>Ilustración artística de Bari Vecchia</title>
+                <rect width="200" height="150" fill="#fdf6e3"/>
+                <path d="M30 150 L30 20 L80 25 V150 Z" fill="#eaddc1" stroke="#c4b79c" stroke-width="1"/>
+                <path d="M120 150 L115 15 L170 20 V150 Z" fill="#dcd3b2" stroke="#c4b79c" stroke-width="1"/>
+                <rect x="45" y="40" width="20" height="25" fill="#8ab0ab" rx="2"/>
+                <rect x="130" y="50" width="25" height="15" fill="#c9ada7" rx="2"/>
+                <line x1="80" y1="30" x2="115" y2="25" stroke="#a3a3a3"/>
+                <path d="M82 30 L85 35 L90 30 L93 35" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+                <path d="M100 27 L103 32 L108 27 L111 32" fill="none" stroke="#f5f5f5" stroke-width="1.5"/>
+                <path d="M 90 90 L 110 90 L 100 105 Z" fill="#e67e22"/>
+                <circle cx="100" cy="120" r="15" fill="#f1c40f"/>
+            </svg>
             <div class="relative border-l-2 border-gray-200 ml-5">
-                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">✈️</div><div class="ml-10"><h4 class="font-bold text-lg">07:00 - Llegada y Coche</h4><p class="text-gray-600">Aterrizaje en el Aeropuerto de Bari (BRI). Recogida del coche de alquiler y comienzo de la aventura.</p></div></div>
-                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">🏨</div><div class="ml-10"><h4 class="font-bold text-lg">09:00 - Check-in en Mola di Bari</h4><p class="text-gray-600">Trayecto de unos 30 min hasta Mola di Bari. Dejad el equipaje en vuestro alojamiento.</p></div></div>
-                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">☕</div><div class="ml-10"><h4 class="font-bold text-lg">10:30 - Primer Contacto con Bari</h4><p class="text-gray-600">Conducid hasta Bari (25 min). Tomad un café y dad un primer paseo para orientaros.</p></div></div>
-                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">🍴</div><div class="ml-10"><h4 class="font-bold text-lg">13:30 - Almuerzo en Bari</h4><p class="text-gray-600"><strong>Sugerencia:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Mastro+Ciccio+Bari" target="_blank" class="text-indigo-500 underline font-semibold">Mastro Ciccio</a>. Famoso por sus bocadillos gourmet creativos y deliciosos, con ingredientes locales.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">✈️</div><div class="ml-10"><h4 class="font-bold text-lg">07:00 - Llegada y Coche</h4><p class="text-gray-600">Aterrizaje en Bari (BRI). Recogida del coche en la oficina de <strong>AUTOVIA</strong> en el aeropuerto. ¡Que comience la aventura!</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">🚗</div><div class="ml-10"><h4 class="font-bold text-lg">08:00 - Directos a Bari y Parking</h4><p class="text-gray-600">Conducid desde el aeropuerto a Bari (25 min). Dejad el coche y el equipaje en un parking vigilado cerca del centro para explorar sin preocupaciones.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">☕</div><div class="ml-10"><h4 class="font-bold text-lg">08:30 - Desayuno y Exploración</h4><p class="text-gray-600">Desayunad como un local y empezad a explorar Bari Vecchia, la Basílica de San Nicolás, la Catedral y la "calle de las orecchiette".</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">🍴</div><div class="ml-10"><h4 class="font-bold text-lg">13:30 - Almuerzo en Bari</h4><p class="text-gray-600"><strong>Sugerencia:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Mastro+Ciccio+Bari" target="_blank" class="text-indigo-500 underline font-semibold">Mastro Ciccio</a>. Famoso por sus bocadillos gourmet creativos y deliciosos.</p></div></div>
                 <div class="relative mb-8">
                     <div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">🧭</div>
                     <div class="ml-10">
                         <h4 class="font-bold text-lg">15:30 - Tarde: Elige tu Aventura</h4>
-                        <p class="text-gray-600 mb-4">Bari tiene mucho que ofrecer. Escoged el plan que más os apetezca para la tarde:</p>
+                        <p class="text-gray-600 mb-4">Continuad explorando Bari con el plan que más os apetezca:</p>
                         <div class="space-y-4">
-                            <div class="bg-sky-50 border-l-4 border-sky-500 p-4 rounded-r-lg"><h5 class="font-bold text-sky-800">Opción 1: Paseo Cultural por Bari Vecchia</h5><p class="text-sm text-gray-700">Ideal para amantes de la historia. Perdeos por el casco antiguo, visitad la Basílica de San Nicolás, la "Via delle Orecchiette" y el Castillo Normando-Suevo.</p></div>
-                            <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg"><h5 class="font-bold text-emerald-800">Opción 2: Tarde de Relax en el Lungomare</h5><p class="text-sm text-gray-700">Perfecto para desconectar. Recorred el paseo marítimo, relajaos en la playa Pane e Pomodoro y terminad con un aperitivo con vistas al mar.</p></div>
-                            <div class="bg-rose-50 border-l-4 border-rose-500 p-4 rounded-r-lg"><h5 class="font-bold text-rose-800">Opción 3: Compras y Ambiente Moderno</h5><p class="text-sm text-gray-700">Para un plan más cosmopolita. Pasead por la Via Sparano, admira el Teatro Petruzzelli y probad un auténtico helado artesanal.</p></div>
+                            <div class="bg-sky-50 border-l-4 border-sky-500 p-4 rounded-r-lg"><h5 class="font-bold text-sky-800">Opción 1: Paseo Cultural por Bari Vecchia</h5><p class="text-sm text-gray-700">Si queréis seguir profundizando en la historia y el encanto del casco antiguo.</p></div>
+                            <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg"><h5 class="font-bold text-emerald-800">Opción 2: Tarde de Relax en el Lungomare</h5><p class="text-sm text-gray-700">Perfecto para desconectar. Recorred el paseo marítimo y relajaos en la playa Pane e Pomodoro.</p></div>
+                            <div class="bg-rose-50 border-l-4 border-rose-500 p-4 rounded-r-lg"><h5 class="font-bold text-rose-800">Opción 3: Compras y Ambiente Moderno</h5><p class="text-sm text-gray-700">Pasead por la Via Sparano y admira el Teatro Petruzzelli.</p></div>
                         </div>
                     </div>
                 </div>
-                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">🌙</div><div class="ml-10"><h4 class="font-bold text-lg">20:30 - Cena en Mola di Bari</h4><p class="text-gray-600"><strong>Sugerencia:</strong> <a href="https://www.google.com/maps/search/?api=1&query=La+Lampara+Mola+di+Bari" target="_blank" class="text-indigo-500 underline font-semibold">Ristorante Pizzeria La Lampara</a>. Excelente marisco fresco y pizzas.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">🏨</div><div class="ml-10"><h4 class="font-bold text-lg">19:00 - Rumbo a Mola di Bari y Check-in</h4><p class="text-gray-600">Tras un día completo, conducid a Mola di Bari (30 min) para hacer el check-in y relajaros un poco.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-indigo-600 text-white rounded-full -left-5 shadow-md">🌙</div><div class="ml-10"><h4 class="font-bold text-lg">21:00 - Cena en Mola di Bari</h4><p class="text-gray-600"><strong>Sugerencia:</strong> <a href="https://www.google.com/maps/search/?api=1&query=La+Lampara+Mola+di+Bari" target="_blank" class="text-indigo-500 underline font-semibold">Ristorante Pizzeria La Lampara</a>. Excelente marisco fresco y pizzas.</p></div></div>
             </div>
         </div>
 
-        <!-- Other days remain the same -->
+        <!-- Día 2: Miércoles, 13 de Agosto -->
         <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
             <h3 class="text-3xl font-bold mb-6 text-teal-600">Día 2: Acantilados y Puertos con Encanto</h3>
+            <svg class="w-full h-auto object-cover rounded-xl mb-8 shadow-md" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                <title>Ilustración artística de Polignano a Mare</title>
+                <defs><linearGradient id="sea2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#5dade2"/><stop offset="100%" stop-color="#2e86c1"/></linearGradient></defs>
+                <rect width="200" height="150" fill="#aed6f1"/>
+                <path d="M0 150 V80 C 20 70, 40 90, 60 85 L 70 90 C 90 70, 120 90, 140 80 L 200 90 V 150 Z" fill="#fdebd0" stroke="#f5cba7" stroke-width="1.5"/>
+                <rect x="20" y="60" width="30" height="20" fill="#fdfefe" rx="2"/><rect x="55" y="65" width="20" height="20" fill="#fcf3cf" rx="2"/>
+                <rect x="100" y="55" width="35" height="25" fill="#fdfefe" rx="2"/><rect x="140" y="65" width="40" height="25" fill="#fcf3cf" rx="2"/>
+                <path d="M60 85 C 70 100, 80 100, 90 85 V 150 H 60 Z" fill="url(#sea2)"/>
+            </svg>
             <div class="relative border-l-2 border-gray-200 ml-5">
-                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-teal-600 text-white rounded-full -left-5 shadow-md">🚗</div><div class="ml-10"><h4 class="font-bold text-lg">09:30 - Salida hacia Polignano a Mare</h4><p class="text-gray-600">Un corto viaje de 20 minutos os llevará a uno de los pueblos más fotografiados de Italia.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-teal-600 text-white rounded-full -left-5 shadow-md">🚗</div><div class="ml-10"><h4 class="font-bold text-lg">09:30 - Salida hacia Polignano a Mare</h4><p class="text-gray-600">Un corto viaje de 20 minutos os llevará a uno de los pueblos más fotografiados de Italia. No os perdáis la famosa playa de Lama Monachile.</p></div></div>
                 <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-teal-600 text-white rounded-full -left-5 shadow-md">🍴</div><div class="ml-10"><h4 class="font-bold text-lg">13:00 - Almuerzo con vistas</h4><p class="text-gray-600"><strong>Sugerencia:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Pescaria+Polignano+a+Mare" target="_blank" class="text-teal-500 underline font-semibold">Pescaria</a>. Sus sándwiches de pescado son legendarios.</p></div></div>
-                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-teal-600 text-white rounded-full -left-5 shadow-md">⛵</div><div class="ml-10"><h4 class="font-bold text-lg">15:30 - Tarde en Monopoli</h4><p class="text-gray-600">Explorad el encantador puerto antiguo (Porto Antico) y sus calles blancas.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-teal-600 text-white rounded-full -left-5 shadow-md">⛵</div><div class="ml-10"><h4 class="font-bold text-lg">15:30 - Tarde en Monopoli</h4><p class="text-gray-600">Explorad el encantador puerto antiguo (Porto Antico) y sus calles blancas. Es el lugar perfecto para sentir la vida de un pueblo pesquero.</p></div></div>
                 <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-teal-600 text-white rounded-full -left-5 shadow-md">🌙</div><div class="ml-10"><h4 class="font-bold text-lg">20:30 - Cena en el puerto de Monopoli</h4><p class="text-gray-600"><strong>Sugerencia:</strong> <a href="https://www.google.com/maps/search/?api=1&query=La+Locanda+sul+Porto+Monopoli" target="_blank" class="text-teal-500 underline font-semibold">La Locanda sul Porto</a>. Cocina local con pescado fresco.</p></div></div>
             </div>
         </div>
+
+        <!-- Día 3: Jueves, 14 de Agosto (NUEVO) -->
         <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
-            <h3 class="text-3xl font-bold mb-6 text-amber-600">Día 3: Trulli Mágicos y la Ciudad Blanca</h3>
+            <h3 class="text-3xl font-bold mb-6 text-cyan-600">Día 3: Playas Paradisíacas (Costa Jónica)</h3>
+            <svg class="w-full h-auto object-cover rounded-xl mb-8 shadow-md" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                <title>Ilustración de una playa paradisíaca en el Salento</title>
+                <defs><linearGradient id="sky-beach" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#85d7ff"/><stop offset="100%" stop-color="#c4eaff"/></linearGradient><linearGradient id="sea-beach" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#22d3ee"/><stop offset="80%" stop-color="#67e8f9"/></linearGradient></defs>
+                <rect width="200" height="150" fill="url(#sky-beach)"/>
+                <path d="M0 150 L0 100 C 50 110, 150 90, 200 100 L 200 150 Z" fill="#fef3c7"/>
+                <path d="M0 105 L0 100 C 50 110, 150 90, 200 100 V 105 C 150 95, 50 115, 0 105 Z" fill="url(#sea-beach)"/>
+                <circle cx="180" cy="30" r="15" fill="#fff3a0"/>
+                <path d="M140 80 A 20 10 0 1 0 180 80 L 160 110 Z" fill="#fca5a5" stroke="#ef4444" stroke-width="1"/>
+                <rect x="157" y="50" width="6" height="30" fill="#4ade80" transform="rotate(10 160 65)"/>
+            </svg>
             <div class="relative border-l-2 border-gray-200 ml-5">
-                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-amber-600 text-white rounded-full -left-5 shadow-md">🛖</div><div class="ml-10"><h4 class="font-bold text-lg">09:00 - Rumbo a Alberobello</h4><p class="text-gray-600">Descubrid Alberobello, Patrimonio de la Humanidad y sus singulares casas trulli.</p></div></div>
-                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-amber-600 text-white rounded-full -left-5 shadow-md">🍴</div><div class="ml-10"><h4 class="font-bold text-lg">13:00 - Almuerzo en un Trullo</h4><p class="text-gray-600"><strong>Sugerencia:</strong> <a href="https://www.google.com/maps/search/?api=1&query=La+Cantina+Alberobello" target="_blank" class="text-amber-500 underline font-semibold">La Cantina</a>. Un restaurante familiar con platos caseros.</p></div></div>
-                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-amber-600 text-white rounded-full -left-5 shadow-md">🏰</div><div class="ml-10"><h4 class="font-bold text-lg">16:00 - Descubrir Ostuni, la "Ciudad Blanca"</h4><p class="text-gray-600">Subid por el laberinto de calles encaladas hasta la catedral. Vistas espectaculares.</p></div></div>
-                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-amber-600 text-white rounded-full -left-5 shadow-md">🌙</div><div class="ml-10"><h4 class="font-bold text-lg">21:00 - Cena de regreso en Mola di Bari</h4><p class="text-gray-600"><strong>Sugerencia:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Pizzeria+da+Gino+Mola+di+Bari" target="_blank" class="text-amber-500 underline font-semibold">Pizzeria da Gino</a> para una pizza napolitana.</p></div></div>
-            </div>
-        </div>
-        <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
-            <h3 class="text-3xl font-bold mb-6 text-stone-600">Día 4: Viaje a la Antigua Matera</h3>
-            <div class="relative border-l-2 border-gray-200 ml-5">
-                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-stone-600 text-white rounded-full -left-5 shadow-md">🌄</div><div class="ml-10"><h4 class="font-bold text-lg">08:30 - Salida hacia Matera</h4><p class="text-gray-600">Un viaje a una de las ciudades habitadas más antiguas del mundo. Explorad los "Sassi".</p></div></div>
-                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-stone-600 text-white rounded-full -left-5 shadow-md">🍴</div><div class="ml-10"><h4 class="font-bold text-lg">13:30 - Almuerzo en una cueva</h4><p class="text-gray-600"><strong>Sugerencia:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Trattoria+del+Caveoso+Matera" target="_blank" class="text-stone-500 underline font-semibold">Trattoria del Caveoso</a>. Comida tradicional en un entorno único.</p></div></div>
-                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-stone-600 text-white rounded-full -left-5 shadow-md">🏛️</div><div class="ml-10"><h4 class="font-bold text-lg">16:00 - Historia Viva</h4><p class="text-gray-600">Visitad una "casa grotta" y el mirador de Murgia Timone para la vista panorámica.</p></div></div>
-                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-stone-600 text-white rounded-full -left-5 shadow-md">🌙</div><div class="ml-10"><h4 class="font-bold text-lg">21:00 - Cena relajada en Mola di Bari</h4><p class="text-gray-600">Después del largo día, cena tranquila en el paseo marítimo de Mola.</p></div></div>
-            </div>
-        </div>
-        <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
-            <h3 class="text-3xl font-bold mb-6 text-rose-600">Día 5: Despedida y Vuelo de Regreso</h3>
-            <div class="relative border-l-2 border-gray-200 ml-5">
-                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-rose-600 text-white rounded-full -left-5 shadow-md">☕</div><div class="ml-10"><h4 class="font-bold text-lg">Mañana - Último Café y Despedida</h4><p class="text-gray-600">Disfrutad del desayuno con calma y dad un último paseo por el puerto de Mola di Bari.</p></div></div>
-                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-rose-600 text-white rounded-full -left-5 shadow-md">✈️</div><div class="ml-10"><h4 class="font-bold text-lg">09:30 - Rumbo al Aeropuerto</h4><p class="text-gray-600">Salida hacia el aeropuerto de Bari (BRI). Devolved el coche y preparaos para vuestro vuelo de las 12:00.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-cyan-600 text-white rounded-full -left-5 shadow-md">🚗</div><div class="ml-10"><h4 class="font-bold text-lg">09:00 - Rumbo al "Caribe de Italia"</h4><p class="text-gray-600">Viaje a la costa Jónica (aprox. 1h 30min) para un día de playa espectacular y más relajado que en Ferragosto.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-cyan-600 text-white rounded-full -left-5 shadow-md">☀️</div><div class="ml-10"><h4 class="font-bold text-lg">10:30 - Mañana en Punta Prosciutto</h4><p class="text-gray-600">Disfrutad de la arena blanca y aguas turquesas de una de las playas más famosas de Italia.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-cyan-600 text-white rounded-full -left-5 shadow-md">🍴</div><div class="ml-10"><h4 class="font-bold text-lg">13:30 - Almuerzo y Tarde en Porto Cesareo</h4><p class="text-gray-600">Explorad el pueblo de Porto Cesareo, almorzad en un restaurante local y disfrutad de sus playas urbanas por la tarde.</p></div></div>
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-cyan-600 text-white rounded-full -left-5 shadow-md">🌙</div><div class="ml-10"><h4 class="font-bold text-lg">Tarde/Noche - Regreso con Calma</h4><p class="text-gray-600">Disfrutad de la playa hasta última hora. Podéis cenar algo ligero por el camino o al llegar a Mola di Bari.</p></div></div>
             </div>
         </div>
 
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white text-center p-4 mt-8">
-        <p>&copy; 2025 - ¡Buen viaje y a disfrutar de Puglia!</p>
-    </footer>
-
-    <!-- Leaflet JS for interactive map -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // 1. Initialize Map
-            const map = L.map('map').setView([40.85, 17.1], 9);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-
-            // 2. Define Locations
-            const locations = {
-                mola: { lat: 41.060, lon: 17.085, name: 'Mola di Bari (Base)' },
-                bari: { lat: 41.117, lon: 16.871, name: 'Bari' },
-                polignano: { lat: 40.995, lon: 17.218, name: 'Polignano a Mare' },
-                monopoli: { lat: 40.953, lon: 17.301, name: 'Monopoli' },
-                alberobello: { lat: 40.784, lon: 17.238, name: 'Alberobello' },
-                ostuni: { lat: 40.729, lon: 17.577, name: 'Ostuni' },
-                matera: { lat: 40.667, lon: 16.602, name: 'Matera' }
-            };
-            
-            // 3. Add Markers
-            for (const key in locations) {
-                const loc = locations[key];
-                const marker = L.marker([loc.lat, loc.lon]).addTo(map)
-                    .bindPopup(`<b>${loc.name}</b>`);
-                if (key === 'mola') {
-                    marker.setIcon(L.icon({
-                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-                        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-                        iconSize: [25, 41],
-                        iconAnchor: [12, 41],
-                        popupAnchor: [1, -34],
-                        shadowSize: [41, 41]
-                    }));
-                }
-            }
-
-            // 4. Define Routes
-            const routes = {
-                day1: {
-                    coords: [[locations.mola.lat, locations.mola.lon], [locations.bari.lat, locations.bari.lon]],
-                    color: '#4f46e5' // Indigo
-                },
-                day2: {
-                    coords: [[locations.mola.lat, locations.mola.lon], [locations.polignano.lat, locations.polignano.lon], [locations.monopoli.lat, locations.monopoli.lon]],
-                    color: '#0d9488' // Teal
-                },
-                day3: {
-                    coords: [[locations.mola.lat, locations.mola.lon], [locations.alberobello.lat, locations.alberobello.lon], [locations.ostuni.lat, locations.ostuni.lon]],
-                    color: '#d97706' // Amber
-                },
-                day4: {
-                    coords: [[locations.mola.lat, locations.mola.lon], [locations.matera.lat, locations.matera.lon]],
-                    color: '#78716c' // Stone
-                }
-            };
-
-            let currentRouteLayer = null;
-
-            function drawRoute(day) {
-                if (currentRouteLayer) {
-                    map.removeLayer(currentRouteLayer);
-                }
-                if (routes[day]) {
-                    currentRouteLayer = L.polyline(routes[day].coords, { color: routes[day].color, weight: 5, opacity: 0.8 }).addTo(map);
-                    map.fitBounds(currentRouteLayer.getBounds().pad(0.2));
-                }
-            }
-            
-            // 5. Event Listeners for buttons
-            document.getElementById('btn-day1').addEventListener('click', () => drawRoute('day1'));
-            document.getElementById('btn-day2').addEventListener('click', () => drawRoute('day2'));
-            document.getElementById('btn-day3').addEventListener('click', () => drawRoute('day3'));
-            document.getElementById('btn-day4').addEventListener('click', () => drawRoute('day4'));
-            document.getElementById('btn-reset').addEventListener('click', () => {
-                if (currentRouteLayer) {
-                    map.removeLayer(currentRouteLayer);
-                }
-                map.setView([40.85, 17.1], 9);
-            });
-        });
-    </script>
-</body>
-</html>
+        <!-- Día 4: Viernes, 15 de Agosto (NUEVO) -->
+        <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
+            <h3 class="text-3xl font-bold mb-6 text-amber-600">Día 4: Ferragosto entre Trulli y Mar</h3>
+            <svg class="w-full h-auto object-cover rounded-xl mb-8 shadow-md" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                <title>Ilustración artística de Alberobello</title>
+                <defs><linearGradient id="sky3" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fad7a0"/><stop offset="100%" stop-color="#fdebd0"/></linearGradient><linearGradient id="roof" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#839192"/><stop offset="100%" stop-color="#5d6d7e"/></linearGradient></defs>
+                <rect width="200" height="150" fill="url(#sky3)"/>
+                <rect y="120" width="200" height="30" fill="#a9dfbf"/>
+                <path d="M 30 120 L 30 90 L 80 90 L 80 120 Z" fill="#fdfefe" stroke="#d5dbdb" stroke-width="1"/><path d="M30 90 L 55 50 L 80 90 Z" fill="url(#roof)" stroke="#515a5a" stroke-width="1"/>
+                <path d="M 110 120 L 110 80 L 170 80 L 170 120 Z" fill="#fdfefe" stroke="#d5dbdb" stroke-width="1"/><path d="M110 80 L 140 30 L 170 80 Z" fill="url(#roof)" stroke="#515a5a" stroke-width="1"/>
+                <circle cx="55" cy="50" r="3" fill="#fdfefe"/>
+            </svg>
+            <div class="relative border-l-2 border-gray-200 ml-5">
+                <div class="relative mb-8"><div class="absolute flex items-center justify-center w-10 h-10 bg-amber-600 text-white rounded-full -left-5 shadow-md">🛖</div><div class="ml-10"><h4 class="font-bold text-lg">09:00 - Mañana Mágica en Alberobello</h4><p class="text-gray-600">
